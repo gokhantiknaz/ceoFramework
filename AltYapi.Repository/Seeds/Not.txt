@@ -1,0 +1,1 @@
+﻿SeedData Uygulama migration esnasında veritabanına default kayıt atmak istersek kullanıyoruz.
