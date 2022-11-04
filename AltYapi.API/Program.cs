@@ -1,6 +1,7 @@
 using AltYapi.API.Filters;
 using AltYapi.API.Middlewares;
 using AltYapi.API.Modules;
+using AltYapi.Core.Dtos;
 using AltYapi.Core.Repositories;
 using AltYapi.Core.Services;
 using AltYapi.Core.UnitOfWorks;
@@ -11,17 +12,26 @@ using AltYapi.Service.Mapping;
 using AltYapi.Service.Services;
 using AltYapi.Service.Validations;
 using Autofac;
+using Autofac.Core;
 using Autofac.Extensions.DependencyInjection;
+using FluentValidation;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddControllers(options => options.Filters.Add(new ValidateFilterAttribute())).AddFluentValidation(x => x.RegisterValidatorsFromAssemblyContaining<ProductDtoValidator>());
+//builder.Services.AddControllers(options => options.Filters.Add(new ValidateFilterAttribute())).AddFluentValidation(x => x.RegisterValidatorsFromAssemblyContaining<ProductDtoValidator>());
+
+builder.Services.AddControllers(options => options.Filters.Add(new ValidateFilterAttribute()));
+
+builder.Services.AddFluentValidationAutoValidation();
+builder.Services.AddValidatorsFromAssemblyContaining<ProductDtoValidator>();
+
 builder.Services.Configure<ApiBehaviorOptions>(options =>
 {
     options.SuppressModelStateInvalidFilter = true;
