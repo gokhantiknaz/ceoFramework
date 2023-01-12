@@ -17,8 +17,20 @@ namespace AltYapi.API.Filters
 
         public async Task OnActionExecutionAsync(ActionExecutingContext context, ActionExecutionDelegate next)
         {
+            //Şimdilik dursun http metotların diğerleri de kullanılabilir.
+            switch (context.HttpContext.Request.Method)
+            {
+                case "POST":
+                    await next.Invoke();
+                    return;
+
+                default:
+                    break;
+            }
+
 
             var idValue = context.ActionArguments.Values.FirstOrDefault();
+
             if (idValue == null)
             {
                 await next.Invoke();

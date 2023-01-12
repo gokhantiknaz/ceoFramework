@@ -4,6 +4,7 @@ using AltYapi.Core.Dtos;
 using AltYapi.Core.Models;
 using AltYapi.Core.Services;
 using AutoMapper;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AltYapi.API.Controllers
@@ -14,7 +15,7 @@ namespace AltYapi.API.Controllers
         private readonly IMapper _mapper;
         private readonly IProductService _productService;
 
-        public ProductsController(IMapper mapper,IProductService productService)
+        public ProductsController(IMapper mapper, IProductService productService)
         {
             _mapper = mapper;
             _productService = productService;
@@ -43,7 +44,7 @@ namespace AltYapi.API.Controllers
             return CreateActionResult(CustomResponseDto<List<ProductDto>>.Success(200, productsDtos));
         }
 
-        
+
         //GET /api/products/5
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
@@ -73,6 +74,20 @@ namespace AltYapi.API.Controllers
         {
             var product = _mapper.Map<Product>(productDto);
             await _productService.UpdateAsync(product);
+            return CreateActionResult(CustomResponseDto<NoContentDto>.Success(204));
+
+        }
+
+        [HttpPatch]
+        public async Task<IActionResult> UpdatePatch(int id, JsonPatchDocument product)
+        {
+            var productReplace = await _productService.GetByIdAsync(id);
+            if (productReplace != null)
+            {
+                product.ApplyTo(productReplace);
+            }
+            await _productService.UpdateAsync(productReplace);
+
             return CreateActionResult(CustomResponseDto<NoContentDto>.Success(204));
 
         }

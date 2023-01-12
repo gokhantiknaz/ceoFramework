@@ -27,7 +27,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 //builder.Services.AddControllers(options => options.Filters.Add(new ValidateFilterAttribute())).AddFluentValidation(x => x.RegisterValidatorsFromAssemblyContaining<ProductDtoValidator>());
 
-builder.Services.AddControllers(options => options.Filters.Add(new ValidateFilterAttribute()));
+builder.Services.AddControllers(options => options.Filters.Add(new ValidateFilterAttribute())).AddNewtonsoftJson();
 
 builder.Services.AddFluentValidationAutoValidation();
 builder.Services.AddValidatorsFromAssemblyContaining<ProductDtoValidator>();
