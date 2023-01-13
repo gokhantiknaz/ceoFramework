@@ -121,6 +121,14 @@ namespace AltYapi.Caching
             await CacheAllProductsAsync();
         }
 
+        public async Task UpdateRangeAsync(IEnumerable<Product> entities)
+        {
+            _repository.UpdateRange(entities);
+            await _unitOfWork.CommitAsync();
+            await CacheAllProductsAsync();
+        }
+       
+
         public IQueryable<Product> Where(Expression<Func<Product, bool>> expression)
         {
             return _memoryCache.Get<List<Product>>(CacheProductKey).Where(expression.Compile()).AsQueryable();

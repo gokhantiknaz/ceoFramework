@@ -9,4 +9,14 @@ namespace AltYapi.Core.Models
         public DateTime? UpdatedDate { get; set; }
 
     }
+
+
+    public interface IBaseEntity
+    {
+       
+        int Id { get; set; }
+        DateTime CreatedDate { get; set; }
+        int? ModifiedBy { get; set; }
+        DateTime? ModifiedDate { get; set; }
+    }
 }

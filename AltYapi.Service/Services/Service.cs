@@ -78,6 +78,14 @@ namespace AltYapi.Service.Services
             await _unitOfWork.CommitAsync();
         }
 
+         public async Task UpdateRangeAsync(IEnumerable<T> entities)
+        {
+            _repository.UpdateRange(entities);
+            await _unitOfWork.CommitAsync();
+           
+        }
+
+
         public IQueryable<T> Where(Expression<Func<T, bool>> expression)
         {
             return _repository.Where(expression);

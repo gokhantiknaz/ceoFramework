@@ -59,13 +59,13 @@ namespace AltYapi.API.Controllers.Ornekler
         //builder.Services.AddControllers(options => options.Filters.Add(new ValidateFilterAttribute())).AddNewtonsoftJson(); --AddNewtonsoftJson ekle
        //Repository de gerekli değişiklikler yapılacak.
         [HttpPatch]
-        public User UpdatePatch(JsonPatchDocument user , int id)
+        public User Update(JsonPatchDocument user , int id)
         {
             //örnek request
             // [
             //  {
-            //    "op": "replace","path": "firsName",
-            //    
+            //    "op": "replace",
+            //    "path": "firstName",
             //    "value": "ENGIN"
             //   },
             //   {

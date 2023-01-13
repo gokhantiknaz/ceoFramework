@@ -78,8 +78,17 @@ namespace AltYapi.API.Controllers
 
         }
 
+        [HttpPut("[action]")]
+        public async Task<IActionResult> UpdateRange(IEnumerable<ProductUpdateDto> productDtos)
+        {
+            var products = _mapper.Map<IEnumerable<Product>>(productDtos);
+            await _productService.UpdateRangeAsync(products);
+            return CreateActionResult(CustomResponseDto<NoContentDto>.Success(204));
+
+        }
+
         [HttpPatch]
-        public async Task<IActionResult> UpdatePatch(int id, JsonPatchDocument product)
+        public async Task<IActionResult> Update(int id, JsonPatchDocument product)
         {
             var productReplace = await _productService.GetByIdAsync(id);
             if (productReplace != null)

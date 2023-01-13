@@ -12,6 +12,7 @@ namespace AltYapi.Core.Services
         Task<T> AddAsync(T entity);
         Task<IEnumerable<T>> AddRangeAsync(IEnumerable<T> entities);
         Task UpdateAsync(T entity);
+        Task UpdateRangeAsync(IEnumerable<T> entities);
         Task RemoveAsync(T entity);
         Task RemoveRangeAsync(IEnumerable<T> entities);
     }

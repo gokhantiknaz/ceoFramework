@@ -16,6 +16,8 @@ namespace AltYapi.Core.Repositories
         Task AddRangeAsync(IEnumerable<T> entities);
         //Update ve Removenin EfCore tarafında Async si yok
         void Update(T entity);
+
+        void UpdateRange(IEnumerable<T> entities);
         void Remove(T entity);
         void RemoveRange(IEnumerable<T> entities);
 
