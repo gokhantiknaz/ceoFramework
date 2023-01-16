@@ -17,6 +17,7 @@ namespace AltYapi.API.Filters
 
         public async Task OnActionExecutionAsync(ActionExecutingContext context, ActionExecutionDelegate next)
         {
+            var idValue = context.ActionArguments.Values.FirstOrDefault();
             //Şimdilik dursun http metotların diğerleri de kullanılabilir.
             switch (context.HttpContext.Request.Method)
             {
@@ -24,12 +25,16 @@ namespace AltYapi.API.Filters
                     await next.Invoke();
                     return;
 
+                case "PUT":
+                    //Dto yada entities e göre dizayn edilebilir.
+                    await next.Invoke();
+                    return;
                 default:
                     break;
             }
 
 
-            var idValue = context.ActionArguments.Values.FirstOrDefault();
+
 
             if (idValue == null)
             {

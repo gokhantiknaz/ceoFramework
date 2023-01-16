@@ -16,7 +16,6 @@ namespace AltYapi.Core.Models
        
         int Id { get; set; }
         DateTime CreatedDate { get; set; }
-        int? ModifiedBy { get; set; }
-        DateTime? ModifiedDate { get; set; }
+        DateTime? UpdatedDate { get; set; }
     }
 }

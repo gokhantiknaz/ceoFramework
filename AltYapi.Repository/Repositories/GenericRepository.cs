@@ -77,7 +77,7 @@ namespace AltYapi.Repository.Repositories
         {
             if (entity is IBaseEntity iEntityDetail)
             {
-                iEntityDetail.ModifiedDate = DateTime.Now;
+                iEntityDetail.UpdatedDate = DateTime.Now;
             }
             _dbSet.Update(entity);
         }
@@ -87,7 +87,7 @@ namespace AltYapi.Repository.Repositories
             {
                 if (entity is IBaseEntity iEntityDetail)
                 {
-                    iEntityDetail.ModifiedDate = DateTime.Now;
+                    iEntityDetail.UpdatedDate = DateTime.Now;
                 }
             }
             _dbSet.UpdateRange(entities);

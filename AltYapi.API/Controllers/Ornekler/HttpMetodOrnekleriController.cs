@@ -1,4 +1,5 @@
-﻿using AltYapi.Core.Dtos;
+﻿using AltYapi.API.Filters;
+using AltYapi.Core.Dtos;
 using AltYapi.Core.Models;
 using AltYapi.Core.Services;
 using AltYapi.Repository.Fake;
@@ -9,7 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace AltYapi.API.Controllers.Ornekler
 {
-
+    [ServiceFilter(typeof(NotFoundFilter<User>))]
     public class HttpMetodOrnekleriController : CustomBaseController
     {
         private readonly List<User> _users = FakeData.GetUsers(200);
