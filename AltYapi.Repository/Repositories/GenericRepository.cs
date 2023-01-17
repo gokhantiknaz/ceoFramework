@@ -25,24 +25,14 @@ namespace AltYapi.Repository.Repositories
 
         public async Task AddAsync(T entity)
         {
-            if (entity is IBaseEntity iEntityDetail)
-            {
-                iEntityDetail.CreatedDate = DateTime.Now;
-            }
+           
 
             await _dbSet.AddAsync(entity);
         }
 
         public async Task AddRangeAsync(IEnumerable<T> entities)
         {
-            foreach (T entity in entities)
-            {
-                if (entity is IBaseEntity iEntityDetail)
-                {
-                    iEntityDetail.CreatedDate = DateTime.Now;
-                }
-
-            }
+           
 
             await _dbSet.AddRangeAsync(entities);
         }
@@ -75,21 +65,12 @@ namespace AltYapi.Repository.Repositories
 
         public void Update(T entity)
         {
-            if (entity is IBaseEntity iEntityDetail)
-            {
-                iEntityDetail.UpdatedDate = DateTime.Now;
-            }
+          
             _dbSet.Update(entity);
         }
         public void UpdateRange(IEnumerable<T> entities)
         {
-            foreach (T entity in entities)
-            {
-                if (entity is IBaseEntity iEntityDetail)
-                {
-                    iEntityDetail.UpdatedDate = DateTime.Now;
-                }
-            }
+           
             _dbSet.UpdateRange(entities);
         }
 

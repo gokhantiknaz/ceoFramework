@@ -25,10 +25,7 @@ namespace AltYapi.API.Filters
                     await next.Invoke();
                     return;
 
-                case "PUT":
-                    //Dto yada entities e göre dizayn edilebilir.
-                    await next.Invoke();
-                    return;
+               
                 default:
                     break;
             }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AltYapi.Core.Dtos
 {
-    public class CategoryDto:BaseDto
+    public class CategoryDto
     {
         public string Name { get; set; }
 

@@ -15,20 +15,20 @@ namespace AltYapi.Service.Services
 {
     public class ProductServiceNoCaching : Service<Product>, IProductService
     {
-        private readonly IProductRepository _repository;
+        private readonly IProductRepository _productRepository;
         private readonly IMapper _mapper;
         private readonly IUnitOfWork _unitOfWork;
 
         public ProductServiceNoCaching(IGenericRepository<Product> repository, IUnitOfWork unitOfWork, IProductRepository productService, IMapper mapper) : base(repository, unitOfWork)
         {
-            _repository = productService;
+            _productRepository = productService;
             _mapper = mapper;
             _unitOfWork = unitOfWork;
         }
 
         public async Task<CustomResponseDto<List<ProductWithCategoryDto>>> GetProductsWithCategory()
         {
-            var products = await _repository.GetProductsWithCategoryAsync();
+            var products = await _productRepository.GetProductsWithCategoryAsync();
 
             var productsDto = _mapper.Map<List<ProductWithCategoryDto>>(products);
             return CustomResponseDto<List<ProductWithCategoryDto>>.Success(200, productsDto);
