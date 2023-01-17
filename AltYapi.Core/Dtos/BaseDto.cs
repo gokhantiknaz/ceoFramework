@@ -12,5 +12,7 @@ namespace AltYapi.Core.Dtos
 
         public DateTime CreatedDate { get; set; }
         public DateTime? UpdatedDate { get; set; }
+
+        public byte[] RowVersion { get; set; }
     }
 }

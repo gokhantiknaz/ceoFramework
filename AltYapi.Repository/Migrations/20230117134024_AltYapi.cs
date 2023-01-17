@@ -3,10 +3,14 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
+#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
+
 namespace AltYapi.Repository.Migrations
 {
-    public partial class initial : Migration
+    /// <inheritdoc />
+    public partial class AltYapi : Migration
     {
+        /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
@@ -17,7 +21,8 @@ namespace AltYapi.Repository.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    UpdatedDate = table.Column<DateTime>(type: "datetime2", nullable: true)
+                    UpdatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    RowVersion = table.Column<byte[]>(type: "rowversion", rowVersion: true, nullable: true)
                 },
                 constraints: table =>
                 {
@@ -35,7 +40,8 @@ namespace AltYapi.Repository.Migrations
                     Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     CategoryId = table.Column<int>(type: "int", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    UpdatedDate = table.Column<DateTime>(type: "datetime2", nullable: true)
+                    UpdatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    RowVersion = table.Column<byte[]>(type: "rowversion", rowVersion: true, nullable: true)
                 },
                 constraints: table =>
                 {
@@ -73,39 +79,33 @@ namespace AltYapi.Repository.Migrations
             migrationBuilder.InsertData(
                 table: "Category",
                 columns: new[] { "Id", "CreatedDate", "Name", "UpdatedDate" },
-                values: new object[] { 1, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Kalemler", null });
-
-            migrationBuilder.InsertData(
-                table: "Category",
-                columns: new[] { "Id", "CreatedDate", "Name", "UpdatedDate" },
-                values: new object[] { 2, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Kitaplar", null });
-
-            migrationBuilder.InsertData(
-                table: "Category",
-                columns: new[] { "Id", "CreatedDate", "Name", "UpdatedDate" },
-                values: new object[] { 3, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Defterler", null });
+                values: new object[,]
+                {
+                    { 1, new DateTime(2023, 1, 17, 16, 40, 23, 989, DateTimeKind.Local).AddTicks(2522), "Kalemler", null },
+                    { 2, new DateTime(2023, 1, 17, 16, 40, 23, 989, DateTimeKind.Local).AddTicks(2534), "Kitaplar", null },
+                    { 3, new DateTime(2023, 1, 17, 16, 40, 23, 989, DateTimeKind.Local).AddTicks(2577), "Defterler", null }
+                });
 
             migrationBuilder.InsertData(
                 table: "Products",
                 columns: new[] { "Id", "CategoryId", "CreatedDate", "Name", "Price", "Stock", "UpdatedDate" },
                 values: new object[,]
                 {
-                    { 1, 1, new DateTime(2022, 4, 8, 11, 3, 27, 190, DateTimeKind.Local).AddTicks(240), "Kalem1", 100m, 20, null },
-                    { 2, 1, new DateTime(2022, 4, 8, 11, 3, 27, 190, DateTimeKind.Local).AddTicks(257), "Kalem2", 200m, 30, null },
-                    { 3, 1, new DateTime(2022, 4, 8, 11, 3, 27, 190, DateTimeKind.Local).AddTicks(258), "Kalem3", 500m, 40, null },
-                    { 4, 2, new DateTime(2022, 4, 8, 11, 3, 27, 190, DateTimeKind.Local).AddTicks(259), "Kitap1", 600m, 50, null },
-                    { 5, 2, new DateTime(2022, 4, 8, 11, 3, 27, 190, DateTimeKind.Local).AddTicks(260), "Kitap2", 700m, 60, null }
+                    { 1, 1, new DateTime(2023, 1, 17, 16, 40, 23, 989, DateTimeKind.Local).AddTicks(2725), "Kalem1", 100m, 20, null },
+                    { 2, 1, new DateTime(2023, 1, 17, 16, 40, 23, 989, DateTimeKind.Local).AddTicks(2727), "Kalem2", 200m, 30, null },
+                    { 3, 1, new DateTime(2023, 1, 17, 16, 40, 23, 989, DateTimeKind.Local).AddTicks(2729), "Kalem3", 500m, 40, null },
+                    { 4, 2, new DateTime(2023, 1, 17, 16, 40, 23, 989, DateTimeKind.Local).AddTicks(2731), "Kitap1", 600m, 50, null },
+                    { 5, 2, new DateTime(2023, 1, 17, 16, 40, 23, 989, DateTimeKind.Local).AddTicks(2733), "Kitap2", 700m, 60, null }
                 });
 
             migrationBuilder.InsertData(
                 table: "ProductFeatures",
                 columns: new[] { "Id", "Color", "Height", "ProductId", "Width" },
-                values: new object[] { 1, "Kırmızı", 100, 1, 200 });
-
-            migrationBuilder.InsertData(
-                table: "ProductFeatures",
-                columns: new[] { "Id", "Color", "Height", "ProductId", "Width" },
-                values: new object[] { 2, "Mavi", 100, 2, 200 });
+                values: new object[,]
+                {
+                    { 1, "Kırmızı", 100, 1, 200 },
+                    { 2, "Mavi", 100, 2, 200 }
+                });
 
             migrationBuilder.CreateIndex(
                 name: "IX_ProductFeatures_ProductId",
@@ -119,6 +119,7 @@ namespace AltYapi.Repository.Migrations
                 column: "CategoryId");
         }
 
+        /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(

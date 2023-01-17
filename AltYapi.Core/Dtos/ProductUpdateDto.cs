@@ -16,5 +16,7 @@ namespace AltYapi.Core.Dtos
         public decimal Price { get; set; }
 
         public int CategoryId { get; set; }
+
+        public byte[] RowVersion { get; set; }
     }
 }

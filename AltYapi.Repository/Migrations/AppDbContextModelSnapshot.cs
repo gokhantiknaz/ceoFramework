@@ -17,18 +17,18 @@ namespace AltYapi.Repository.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.3")
+                .HasAnnotation("ProductVersion", "7.0.0")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
-            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
+            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("AltYapi.Core.Category", b =>
+            modelBuilder.Entity("AltYapi.Core.Models.Category", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
@@ -37,6 +37,11 @@ namespace AltYapi.Repository.Migrations
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
+
+                    b.Property<byte[]>("RowVersion")
+                        .IsConcurrencyToken()
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("rowversion");
 
                     b.Property<DateTime?>("UpdatedDate")
                         .HasColumnType("datetime2");
@@ -49,30 +54,30 @@ namespace AltYapi.Repository.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedDate = new DateTime(2023, 1, 17, 16, 40, 23, 989, DateTimeKind.Local).AddTicks(2522),
                             Name = "Kalemler"
                         },
                         new
                         {
                             Id = 2,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedDate = new DateTime(2023, 1, 17, 16, 40, 23, 989, DateTimeKind.Local).AddTicks(2534),
                             Name = "Kitaplar"
                         },
                         new
                         {
                             Id = 3,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedDate = new DateTime(2023, 1, 17, 16, 40, 23, 989, DateTimeKind.Local).AddTicks(2577),
                             Name = "Defterler"
                         });
                 });
 
-            modelBuilder.Entity("AltYapi.Core.Product", b =>
+            modelBuilder.Entity("AltYapi.Core.Models.Product", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
@@ -87,6 +92,11 @@ namespace AltYapi.Repository.Migrations
 
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
+
+                    b.Property<byte[]>("RowVersion")
+                        .IsConcurrencyToken()
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("rowversion");
 
                     b.Property<int>("Stock")
                         .HasColumnType("int");
@@ -105,7 +115,7 @@ namespace AltYapi.Repository.Migrations
                         {
                             Id = 1,
                             CategoryId = 1,
-                            CreatedDate = new DateTime(2022, 4, 8, 11, 3, 27, 190, DateTimeKind.Local).AddTicks(240),
+                            CreatedDate = new DateTime(2023, 1, 17, 16, 40, 23, 989, DateTimeKind.Local).AddTicks(2725),
                             Name = "Kalem1",
                             Price = 100m,
                             Stock = 20
@@ -114,7 +124,7 @@ namespace AltYapi.Repository.Migrations
                         {
                             Id = 2,
                             CategoryId = 1,
-                            CreatedDate = new DateTime(2022, 4, 8, 11, 3, 27, 190, DateTimeKind.Local).AddTicks(257),
+                            CreatedDate = new DateTime(2023, 1, 17, 16, 40, 23, 989, DateTimeKind.Local).AddTicks(2727),
                             Name = "Kalem2",
                             Price = 200m,
                             Stock = 30
@@ -123,7 +133,7 @@ namespace AltYapi.Repository.Migrations
                         {
                             Id = 3,
                             CategoryId = 1,
-                            CreatedDate = new DateTime(2022, 4, 8, 11, 3, 27, 190, DateTimeKind.Local).AddTicks(258),
+                            CreatedDate = new DateTime(2023, 1, 17, 16, 40, 23, 989, DateTimeKind.Local).AddTicks(2729),
                             Name = "Kalem3",
                             Price = 500m,
                             Stock = 40
@@ -132,7 +142,7 @@ namespace AltYapi.Repository.Migrations
                         {
                             Id = 4,
                             CategoryId = 2,
-                            CreatedDate = new DateTime(2022, 4, 8, 11, 3, 27, 190, DateTimeKind.Local).AddTicks(259),
+                            CreatedDate = new DateTime(2023, 1, 17, 16, 40, 23, 989, DateTimeKind.Local).AddTicks(2731),
                             Name = "Kitap1",
                             Price = 600m,
                             Stock = 50
@@ -141,20 +151,20 @@ namespace AltYapi.Repository.Migrations
                         {
                             Id = 5,
                             CategoryId = 2,
-                            CreatedDate = new DateTime(2022, 4, 8, 11, 3, 27, 190, DateTimeKind.Local).AddTicks(260),
+                            CreatedDate = new DateTime(2023, 1, 17, 16, 40, 23, 989, DateTimeKind.Local).AddTicks(2733),
                             Name = "Kitap2",
                             Price = 700m,
                             Stock = 60
                         });
                 });
 
-            modelBuilder.Entity("AltYapi.Core.ProductFeature", b =>
+            modelBuilder.Entity("AltYapi.Core.Models.ProductFeature", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Color")
                         .HasColumnType("nvarchar(max)");
@@ -194,9 +204,9 @@ namespace AltYapi.Repository.Migrations
                         });
                 });
 
-            modelBuilder.Entity("AltYapi.Core.Product", b =>
+            modelBuilder.Entity("AltYapi.Core.Models.Product", b =>
                 {
-                    b.HasOne("AltYapi.Core.Category", "Category")
+                    b.HasOne("AltYapi.Core.Models.Category", "Category")
                         .WithMany("Products")
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -205,23 +215,23 @@ namespace AltYapi.Repository.Migrations
                     b.Navigation("Category");
                 });
 
-            modelBuilder.Entity("AltYapi.Core.ProductFeature", b =>
+            modelBuilder.Entity("AltYapi.Core.Models.ProductFeature", b =>
                 {
-                    b.HasOne("AltYapi.Core.Product", "Product")
+                    b.HasOne("AltYapi.Core.Models.Product", "Product")
                         .WithOne("ProductFeature")
-                        .HasForeignKey("AltYapi.Core.ProductFeature", "ProductId")
+                        .HasForeignKey("AltYapi.Core.Models.ProductFeature", "ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Product");
                 });
 
-            modelBuilder.Entity("AltYapi.Core.Category", b =>
+            modelBuilder.Entity("AltYapi.Core.Models.Category", b =>
                 {
                     b.Navigation("Products");
                 });
 
-            modelBuilder.Entity("AltYapi.Core.Product", b =>
+            modelBuilder.Entity("AltYapi.Core.Models.Product", b =>
                 {
                     b.Navigation("ProductFeature");
                 });

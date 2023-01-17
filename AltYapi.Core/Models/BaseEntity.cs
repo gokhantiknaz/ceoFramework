@@ -1,4 +1,6 @@
 ﻿
+using System.ComponentModel.DataAnnotations;
+
 namespace AltYapi.Core.Models
 {
     //Abstract yaptık.New ile kullanamayız.
@@ -8,14 +10,18 @@ namespace AltYapi.Core.Models
         public DateTime CreatedDate { get; set; }
         public DateTime? UpdatedDate { get; set; }
 
+        [Timestamp]
+        public byte[] RowVersion { get; set; }
+
     }
 
 
-    public interface IBaseEntity
-    {
+    //public interface IBaseEntity
+    //{
        
-        int Id { get; set; }
-        DateTime CreatedDate { get; set; }
-        DateTime? UpdatedDate { get; set; }
-    }
+    //    int Id { get; set; }
+    //    DateTime CreatedDate { get; set; }
+    //    DateTime? UpdatedDate { get; set; }
+    //    public byte[] RowVersion { get; set; }
+    //}
 }

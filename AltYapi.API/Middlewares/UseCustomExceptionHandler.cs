@@ -1,6 +1,7 @@
 ﻿using AltYapi.Core.Dtos;
 using AltYapi.Service.Exceptions;
 using Microsoft.AspNetCore.Diagnostics;
+using Microsoft.EntityFrameworkCore;
 using System.Text.Json;
 
 namespace AltYapi.API.Middlewares
@@ -20,14 +21,21 @@ namespace AltYapi.API.Middlewares
                     var statusCode = exceptionFeature.Error switch
                     {
                         ClientSideException => 400,
-                        NotFoundException =>404,
+                        NotFoundException => 404,
+                        DbUpdateConcurrencyException => 501,
                         _ => 500
                     };
 
                     // 500 durumları için hatayı loglayıp eğer 500 ise kendi ortak hata mesajımızı dönmemiz lazım. Yapılacak.
                     context.Response.StatusCode = statusCode;
 
-                    var response = CustomResponseDto<NoContentDto>.Fail(statusCode, exceptionFeature.Error.Message);
+                    string errorMessage = exceptionFeature.Error.Message;
+                    if (statusCode == 501)
+                    {
+                        errorMessage = "İşlem yapılmak istenilen kayıt üzerinde başka bir işlem yapılmıştır. Lütfen Tekrar Deneyiniz!";
+                    }
+
+                    var response = CustomResponseDto<NoContentDto>.Fail(statusCode, errorMessage);
 
                     await context.Response.WriteAsync(JsonSerializer.Serialize(response));
 

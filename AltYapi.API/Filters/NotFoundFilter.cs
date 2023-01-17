@@ -25,7 +25,9 @@ namespace AltYapi.API.Filters
                     await next.Invoke();
                     return;
 
-               
+                case "PUT":
+                    await next.Invoke();
+                    return;
                 default:
                     break;
             }
