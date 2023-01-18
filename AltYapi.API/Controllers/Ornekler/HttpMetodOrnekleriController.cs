@@ -1,10 +1,5 @@
 ﻿using AltYapi.API.Filters;
-using AltYapi.Core.Dtos;
-using AltYapi.Core.Models;
-using AltYapi.Core.Services;
 using AltYapi.Repository.Fake;
-using Bogus.DataSets;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 
@@ -14,22 +9,28 @@ namespace AltYapi.API.Controllers.Ornekler
     public class HttpMetodOrnekleriController : CustomBaseController
     {
         private readonly List<User> _users = FakeData.GetUsers(200);
-        private readonly ILogger<HttpMetodOrnekleriController> _logger;
-        public HttpMetodOrnekleriController(ILogger<HttpMetodOrnekleriController> logger)
+
+        //private readonly ILogger<HttpMetodOrnekleriController> _logger;
+
+        private readonly ILoggerFactory _loggerFactory;
+
+        public HttpMetodOrnekleriController(ILoggerFactory loggerFactory)
         {
-            this._logger = logger;
+            this._loggerFactory = loggerFactory;
         }
 
         [HttpGet]
         public List<User> All()
         {
-           
+            var _logger = _loggerFactory.CreateLogger("AllMetodu");
             _logger.LogTrace("Save metodu çalıştı");
             _logger.LogDebug("Save metodu çalıştı");
             _logger.LogInformation("Save metodu çalıştı");
             _logger.LogWarning("Save metodu çalıştı");
             _logger.LogError("Save metodu çalıştı");
             _logger.LogCritical("Save metodu çalıştı");
+
+
             return _users;
         }
 
@@ -52,7 +53,7 @@ namespace AltYapi.API.Controllers.Ornekler
         [HttpPost]
         public User Save(User user)
         {
-          
+
             return user;
 
         }
