@@ -72,6 +72,11 @@ builder.Host.ConfigureContainer<ContainerBuilder>(containerBuilder => containerB
 
 var app = builder.Build();
 
+
+//app.Logger.LogInformation("Adding Routes");
+//app.Logger.LogInformation("Starting the app");
+//app.Logger.IsEnabled(LogLevel.Debug);
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
