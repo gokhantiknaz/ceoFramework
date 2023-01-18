@@ -14,10 +14,22 @@ namespace AltYapi.API.Controllers.Ornekler
     public class HttpMetodOrnekleriController : CustomBaseController
     {
         private readonly List<User> _users = FakeData.GetUsers(200);
+        private readonly ILogger<HttpMetodOrnekleriController> _logger;
+        public HttpMetodOrnekleriController(ILogger<HttpMetodOrnekleriController> logger)
+        {
+            this._logger = logger;
+        }
 
         [HttpGet]
         public List<User> All()
         {
+           
+            _logger.LogTrace("Save metodu çalıştı");
+            _logger.LogDebug("Save metodu çalıştı");
+            _logger.LogInformation("Save metodu çalıştı");
+            _logger.LogWarning("Save metodu çalıştı");
+            _logger.LogError("Save metodu çalıştı");
+            _logger.LogCritical("Save metodu çalıştı");
             return _users;
         }
 
@@ -40,8 +52,7 @@ namespace AltYapi.API.Controllers.Ornekler
         [HttpPost]
         public User Save(User user)
         {
-            _users.Add(user);
-
+          
             return user;
 
         }
@@ -58,9 +69,9 @@ namespace AltYapi.API.Controllers.Ornekler
         //microsoft.aspnetcore.jsonpatch\7.0.2\
         //microsoft.aspnetcore.mvc.newtonsoftjson\7.0.2\ 
         //builder.Services.AddControllers(options => options.Filters.Add(new ValidateFilterAttribute())).AddNewtonsoftJson(); --AddNewtonsoftJson ekle
-       //Repository de gerekli değişiklikler yapılacak.
+        //Repository de gerekli değişiklikler yapılacak.
         [HttpPatch]
-        public User Update(JsonPatchDocument user , int id)
+        public User Update(JsonPatchDocument user, int id)
         {
             //örnek request
             // [
@@ -84,7 +95,7 @@ namespace AltYapi.API.Controllers.Ornekler
             //  }
             //]
             var editedUser = _users.FirstOrDefault(x => x.Id == id);
-            if (editedUser!=null)
+            if (editedUser != null)
             {
                 user.ApplyTo(editedUser);
             }

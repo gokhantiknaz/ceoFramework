@@ -29,6 +29,7 @@ namespace AltYapi.API.Middlewares
                     // 500 durumları için hatayı loglayıp eğer 500 ise kendi ortak hata mesajımızı dönmemiz lazım. Yapılacak.
                     context.Response.StatusCode = statusCode;
 
+                    //Status kodlar ve hata mesajları düzenlenecek!!!
                     string errorMessage = exceptionFeature.Error.Message;
                     if (statusCode == 501)
                     {
