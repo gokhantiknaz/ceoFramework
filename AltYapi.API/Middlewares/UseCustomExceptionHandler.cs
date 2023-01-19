@@ -42,10 +42,12 @@ namespace AltYapi.API.Middlewares
                     }
 
                     var response = CustomResponseDto<NoContentDto>.Fail(statusCode, errorMessage);
+                    //Düzenlemeler yapılacak
+                    _logger.LogTrace(exceptionFeature.Error,"Hata{a}", "aa");
 
                     await context.Response.WriteAsync(JsonSerializer.Serialize(response));
-                    //Düzenlemeler yapılacak
-                    _logger.LogError(exceptionFeature.Error, "Hata{a}","aa");
+                    
+                
                 });
 
             }

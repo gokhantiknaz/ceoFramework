@@ -10,16 +10,19 @@ namespace AltYapi.API.Controllers
     public class ProductsWithDtoController : CustomBaseController
     {
         private readonly IProductServicesWithDto _productServiceWithDto;
+        private readonly ILogger<ProductsWithDtoController> _logger;
 
-        public ProductsWithDtoController(IProductServicesWithDto productServiceWithDto)
+        public ProductsWithDtoController(IProductServicesWithDto productServiceWithDto, ILogger<ProductsWithDtoController> logger)
         {
             _productServiceWithDto = productServiceWithDto;
+            _logger = logger;
         }
 
         //GET /api/products/GetProductsWithCategory
         [HttpGet("[action]")]
         public async Task<IActionResult> GetProductsWithCategory()
         {
+          
             return CreateActionResult(await _productServiceWithDto.GetProductsWithCategory());
 
         }

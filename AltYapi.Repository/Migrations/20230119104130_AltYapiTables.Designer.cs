@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AltYapi.Repository.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20230117134024_AltYapi")]
-    partial class AltYapi
+    [Migration("20230119104130_AltYapiTables")]
+    partial class AltYapiTables
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -57,21 +57,61 @@ namespace AltYapi.Repository.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2023, 1, 17, 16, 40, 23, 989, DateTimeKind.Local).AddTicks(2522),
+                            CreatedDate = new DateTime(2023, 1, 19, 13, 41, 30, 368, DateTimeKind.Local).AddTicks(2597),
                             Name = "Kalemler"
                         },
                         new
                         {
                             Id = 2,
-                            CreatedDate = new DateTime(2023, 1, 17, 16, 40, 23, 989, DateTimeKind.Local).AddTicks(2534),
+                            CreatedDate = new DateTime(2023, 1, 19, 13, 41, 30, 368, DateTimeKind.Local).AddTicks(2611),
                             Name = "Kitaplar"
                         },
                         new
                         {
                             Id = 3,
-                            CreatedDate = new DateTime(2023, 1, 17, 16, 40, 23, 989, DateTimeKind.Local).AddTicks(2577),
+                            CreatedDate = new DateTime(2023, 1, 19, 13, 41, 30, 368, DateTimeKind.Local).AddTicks(2612),
                             Name = "Defterler"
                         });
+                });
+
+            modelBuilder.Entity("AltYapi.Core.Models.Log", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Callsite")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Exception")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Level")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<DateTime>("Logged")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Logger")
+                        .HasMaxLength(250)
+                        .HasColumnType("nvarchar(250)");
+
+                    b.Property<string>("MachineName")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("Message")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Log", (string)null);
                 });
 
             modelBuilder.Entity("AltYapi.Core.Models.Product", b =>
@@ -118,7 +158,7 @@ namespace AltYapi.Repository.Migrations
                         {
                             Id = 1,
                             CategoryId = 1,
-                            CreatedDate = new DateTime(2023, 1, 17, 16, 40, 23, 989, DateTimeKind.Local).AddTicks(2725),
+                            CreatedDate = new DateTime(2023, 1, 19, 13, 41, 30, 368, DateTimeKind.Local).AddTicks(2762),
                             Name = "Kalem1",
                             Price = 100m,
                             Stock = 20
@@ -127,7 +167,7 @@ namespace AltYapi.Repository.Migrations
                         {
                             Id = 2,
                             CategoryId = 1,
-                            CreatedDate = new DateTime(2023, 1, 17, 16, 40, 23, 989, DateTimeKind.Local).AddTicks(2727),
+                            CreatedDate = new DateTime(2023, 1, 19, 13, 41, 30, 368, DateTimeKind.Local).AddTicks(2765),
                             Name = "Kalem2",
                             Price = 200m,
                             Stock = 30
@@ -136,7 +176,7 @@ namespace AltYapi.Repository.Migrations
                         {
                             Id = 3,
                             CategoryId = 1,
-                            CreatedDate = new DateTime(2023, 1, 17, 16, 40, 23, 989, DateTimeKind.Local).AddTicks(2729),
+                            CreatedDate = new DateTime(2023, 1, 19, 13, 41, 30, 368, DateTimeKind.Local).AddTicks(2766),
                             Name = "Kalem3",
                             Price = 500m,
                             Stock = 40
@@ -145,7 +185,7 @@ namespace AltYapi.Repository.Migrations
                         {
                             Id = 4,
                             CategoryId = 2,
-                            CreatedDate = new DateTime(2023, 1, 17, 16, 40, 23, 989, DateTimeKind.Local).AddTicks(2731),
+                            CreatedDate = new DateTime(2023, 1, 19, 13, 41, 30, 368, DateTimeKind.Local).AddTicks(2768),
                             Name = "Kitap1",
                             Price = 600m,
                             Stock = 50
@@ -154,7 +194,7 @@ namespace AltYapi.Repository.Migrations
                         {
                             Id = 5,
                             CategoryId = 2,
-                            CreatedDate = new DateTime(2023, 1, 17, 16, 40, 23, 989, DateTimeKind.Local).AddTicks(2733),
+                            CreatedDate = new DateTime(2023, 1, 19, 13, 41, 30, 368, DateTimeKind.Local).AddTicks(2769),
                             Name = "Kitap2",
                             Price = 700m,
                             Stock = 60

@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace AltYapi.Repository.Migrations
 {
     /// <inheritdoc />
-    public partial class AltYapi : Migration
+    public partial class AltYapiTables : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -27,6 +27,25 @@ namespace AltYapi.Repository.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Category", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Log",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    MachineName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    Logged = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Level = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    Message = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Logger = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: true),
+                    Callsite = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Exception = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Log", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -81,9 +100,9 @@ namespace AltYapi.Repository.Migrations
                 columns: new[] { "Id", "CreatedDate", "Name", "UpdatedDate" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2023, 1, 17, 16, 40, 23, 989, DateTimeKind.Local).AddTicks(2522), "Kalemler", null },
-                    { 2, new DateTime(2023, 1, 17, 16, 40, 23, 989, DateTimeKind.Local).AddTicks(2534), "Kitaplar", null },
-                    { 3, new DateTime(2023, 1, 17, 16, 40, 23, 989, DateTimeKind.Local).AddTicks(2577), "Defterler", null }
+                    { 1, new DateTime(2023, 1, 19, 13, 41, 30, 368, DateTimeKind.Local).AddTicks(2597), "Kalemler", null },
+                    { 2, new DateTime(2023, 1, 19, 13, 41, 30, 368, DateTimeKind.Local).AddTicks(2611), "Kitaplar", null },
+                    { 3, new DateTime(2023, 1, 19, 13, 41, 30, 368, DateTimeKind.Local).AddTicks(2612), "Defterler", null }
                 });
 
             migrationBuilder.InsertData(
@@ -91,11 +110,11 @@ namespace AltYapi.Repository.Migrations
                 columns: new[] { "Id", "CategoryId", "CreatedDate", "Name", "Price", "Stock", "UpdatedDate" },
                 values: new object[,]
                 {
-                    { 1, 1, new DateTime(2023, 1, 17, 16, 40, 23, 989, DateTimeKind.Local).AddTicks(2725), "Kalem1", 100m, 20, null },
-                    { 2, 1, new DateTime(2023, 1, 17, 16, 40, 23, 989, DateTimeKind.Local).AddTicks(2727), "Kalem2", 200m, 30, null },
-                    { 3, 1, new DateTime(2023, 1, 17, 16, 40, 23, 989, DateTimeKind.Local).AddTicks(2729), "Kalem3", 500m, 40, null },
-                    { 4, 2, new DateTime(2023, 1, 17, 16, 40, 23, 989, DateTimeKind.Local).AddTicks(2731), "Kitap1", 600m, 50, null },
-                    { 5, 2, new DateTime(2023, 1, 17, 16, 40, 23, 989, DateTimeKind.Local).AddTicks(2733), "Kitap2", 700m, 60, null }
+                    { 1, 1, new DateTime(2023, 1, 19, 13, 41, 30, 368, DateTimeKind.Local).AddTicks(2762), "Kalem1", 100m, 20, null },
+                    { 2, 1, new DateTime(2023, 1, 19, 13, 41, 30, 368, DateTimeKind.Local).AddTicks(2765), "Kalem2", 200m, 30, null },
+                    { 3, 1, new DateTime(2023, 1, 19, 13, 41, 30, 368, DateTimeKind.Local).AddTicks(2766), "Kalem3", 500m, 40, null },
+                    { 4, 2, new DateTime(2023, 1, 19, 13, 41, 30, 368, DateTimeKind.Local).AddTicks(2768), "Kitap1", 600m, 50, null },
+                    { 5, 2, new DateTime(2023, 1, 19, 13, 41, 30, 368, DateTimeKind.Local).AddTicks(2769), "Kitap2", 700m, 60, null }
                 });
 
             migrationBuilder.InsertData(
@@ -122,6 +141,9 @@ namespace AltYapi.Repository.Migrations
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "Log");
+
             migrationBuilder.DropTable(
                 name: "ProductFeatures");
 
