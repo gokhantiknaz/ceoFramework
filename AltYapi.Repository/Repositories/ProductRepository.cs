@@ -18,6 +18,8 @@ namespace AltYapi.Repository.Repositories
 
         public async Task<List<Product>> GetProductsWithCategoryAsync()
         {
+            var a = "deneme";
+            int i = Convert.ToInt32(a);
             //Eager Loading datayı çekerken categorileri de almasını sağladık
             return await _context.Products.Include(x => x.Category).ToListAsync();
         }

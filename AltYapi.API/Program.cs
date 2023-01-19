@@ -1,3 +1,4 @@
+using AltYapi.API.Controllers;
 using AltYapi.API.Filters;
 using AltYapi.API.Middlewares;
 using AltYapi.API.Modules;
@@ -18,6 +19,7 @@ using FluentValidation;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using NLog.Web;
 using System;
 using System.Reflection;
 
@@ -68,7 +70,8 @@ builder.Services.AddDbContext<AppDbContext>(x =>
 builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
 builder.Host.ConfigureContainer<ContainerBuilder>(containerBuilder => containerBuilder.RegisterModule(new RepoServiceModule()));
 
-
+builder.Logging.ClearProviders();
+builder.Host.UseNLog();
 
 var app = builder.Build();
 
@@ -93,6 +96,6 @@ app.UseCustomException();
 
 app.UseAuthorization();
 
-app.MapControllers();
+app.MapControllers(); 
 
 app.Run();

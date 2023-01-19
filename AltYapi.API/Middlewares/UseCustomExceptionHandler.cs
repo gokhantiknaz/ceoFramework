@@ -1,7 +1,10 @@
-﻿using AltYapi.Core.Dtos;
+﻿using AltYapi.API.Controllers;
+using AltYapi.Core.Dtos;
+using AltYapi.Core.Services;
 using AltYapi.Service.Exceptions;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using System.Text.Json;
 
 namespace AltYapi.API.Middlewares
@@ -12,6 +15,8 @@ namespace AltYapi.API.Middlewares
         {
             app.UseExceptionHandler(config =>
             {
+
+                var _logger = config.ApplicationServices.GetService<ILogger<CustomBaseController>>();
                 config.Run(async context =>
                 {
                     context.Response.ContentType = "application/json";
@@ -39,11 +44,15 @@ namespace AltYapi.API.Middlewares
                     var response = CustomResponseDto<NoContentDto>.Fail(statusCode, errorMessage);
 
                     await context.Response.WriteAsync(JsonSerializer.Serialize(response));
-
+                    //Düzenlemeler yapılacak
+                    _logger.LogError(exceptionFeature.Error, "Hata{a}","aa");
                 });
 
             }
             );
         }
+
+
+        
     }
 }
