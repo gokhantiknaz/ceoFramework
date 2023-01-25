@@ -32,9 +32,6 @@ namespace AltYapi.API.Filters
                     break;
             }
 
-
-
-
             if (idValue == null)
             {
                 await next.Invoke();

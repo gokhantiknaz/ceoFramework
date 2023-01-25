@@ -65,6 +65,8 @@ builder.Services.AddDbContext<AppDbContext>(x =>
        
         options.MigrationsAssembly(Assembly.GetAssembly(typeof(AppDbContext)).GetName().Name);
     });
+
+   
 });
 
 builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
