@@ -3,12 +3,15 @@ using AltYapi.API.Filters;
 using AltYapi.API.Middlewares;
 using AltYapi.API.Modules;
 using AltYapi.Core.Dtos;
+using AltYapi.Core.MongoDbSettings;
 using AltYapi.Core.Repositories;
+using AltYapi.Core.Repositories.RepositoriesMongo;
 using AltYapi.Core.Services;
 using AltYapi.Core.UnitOfWorks;
 using AltYapi.Repository;
 using AltYapi.Repository.Repositories;
 using AltYapi.Repository.UnitOfWorks;
+using AltYapi.RepositoryMongo.Repositories;
 using AltYapi.Service.Mapping;
 using AltYapi.Service.Services;
 using AltYapi.Service.Validations;
@@ -19,6 +22,8 @@ using FluentValidation;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Options;
 using NLog.Web;
 using System;
 using System.Reflection;
@@ -37,6 +42,7 @@ builder.Services.AddValidatorsFromAssemblyContaining<ProductDtoValidator>();
 builder.Services.Configure<ApiBehaviorOptions>(options =>
 {
     options.SuppressModelStateInvalidFilter = true;
+   
 
 });
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -59,15 +65,19 @@ builder.Services.AddAutoMapper(typeof(MapProfile));
 
 builder.Services.AddDbContext<AppDbContext>(x =>
 {
-   
     x.UseSqlServer(builder.Configuration.GetConnectionString("SqlConnection"), options =>
     {
-       
         options.MigrationsAssembly(Assembly.GetAssembly(typeof(AppDbContext)).GetName().Name);
     });
 
    
 });
+
+//MongoDbSettings
+builder.Services.Configure<MongoDbSettings>(builder.Configuration.GetSection("MongoDbSettings"));
+builder.Services.AddSingleton<IMongoDbSettings>(serviceProvider =>
+        serviceProvider.GetRequiredService<IOptions<MongoDbSettings>>().Value);
+builder.Services.AddScoped(typeof(IMongoRepository<>), typeof(MongoRepository<>));
 
 builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
 builder.Host.ConfigureContainer<ContainerBuilder>(containerBuilder => containerBuilder.RegisterModule(new RepoServiceModule()));
@@ -88,7 +98,6 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
 
 
 app.UseHttpsRedirection();

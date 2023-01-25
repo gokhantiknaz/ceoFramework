@@ -19,7 +19,7 @@ namespace AltYapi.Repository
 
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
-
+           
         }
 
         public DbSet<Category> Categories { get; set; }
@@ -75,7 +75,7 @@ namespace AltYapi.Repository
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-
+          
             //Seeds de ProductFeatureSeed yapmadık buradan da yapabilirz göstermek için Migrotion esnasında veritabanına datayı direk atıyor.
             //Best practice açısından burada yazmamız gerekir örnek için yapıldı.
             modelBuilder.Entity<ProductFeature>().HasData(
@@ -87,6 +87,8 @@ namespace AltYapi.Repository
             //base.OnModelCreating(modelBuilder.EnableAutoHistory(null));
             base.OnModelCreating(modelBuilder);
         }
+
+      
 
 
     }

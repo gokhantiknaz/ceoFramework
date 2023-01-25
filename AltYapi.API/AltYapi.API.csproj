@@ -34,4 +34,8 @@
     <ProjectReference Include="..\AltYapi.Caching\AltYapi.Caching.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="ConfigureServicesMongo\" />
+  </ItemGroup>
+
 </Project>

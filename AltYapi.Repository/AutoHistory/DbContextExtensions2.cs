@@ -142,7 +142,7 @@ namespace AltYapi.Repository.AutoHistory
 
         private static string PrimaryKey(this EntityEntry entry)
         {
-            IKey? key = entry.Metadata.FindPrimaryKey();
+            IKey key = entry.Metadata.FindPrimaryKey();
             List<object> list = new List<object>();
             foreach (IProperty property in key!.Properties)
             {
