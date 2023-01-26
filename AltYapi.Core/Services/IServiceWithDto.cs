@@ -9,12 +9,13 @@ using System.Threading.Tasks;
 
 namespace AltYapi.Core.Services
 {
-    public interface IServiceWithDto<Entitiy, Dto> where Entitiy : BaseEntity where Dto : class
+
+    public interface IServiceWithDto<T, Dto>  where Dto : class
     {
         Task<CustomResponseDto<Dto>> GetByIdAsync(int id);
         Task<CustomResponseDto<IEnumerable<Dto>>> GetAllAsync();
-        Task<CustomResponseDto<IEnumerable<Dto>>> Where(Expression<Func<Entitiy, bool>> expression);
-        Task<CustomResponseDto< bool>> AnyAsync(Expression<Func<Entitiy, bool>> expression);
+        Task<CustomResponseDto<IEnumerable<Dto>>> Where(Expression<Func<T, bool>> expression);
+        Task<CustomResponseDto< bool>> AnyAsync(Expression<Func<T, bool>> expression);
         Task<CustomResponseDto<Dto>> AddAsync(Dto dto);
         Task<CustomResponseDto<IEnumerable<Dto>>> AddRangeAsync(IEnumerable<Dto> dtos);
         Task<CustomResponseDto<NoContentDto>> UpdateAsync(Dto entity);

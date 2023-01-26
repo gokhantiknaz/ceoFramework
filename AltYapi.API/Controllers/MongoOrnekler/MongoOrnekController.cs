@@ -1,5 +1,10 @@
-﻿using AltYapi.Core.Models.ModelsMongo;
+﻿using AltYapi.Core.Dtos;
+using AltYapi.Core.Models;
+using AltYapi.Core.Models.ModelsMongo;
 using AltYapi.Core.Repositories.RepositoriesMongo;
+using AltYapi.Core.Services;
+using AltYapi.Service.Services;
+using Autofac.Core;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -7,32 +12,24 @@ namespace AltYapi.API.Controllers.MongoOrnekler
 {
     public class MongoOrnekController : CustomBaseController
     {
+        private readonly IPersonServicesWithDto _service;
 
-        private readonly IMongoRepository<Person> _peopleRepository;
 
-        public MongoOrnekController(IMongoRepository<Person> peopleRepository)
+        public MongoOrnekController(IPersonServicesWithDto service)
         {
-            _peopleRepository = peopleRepository;
+            _service = service;
         }
 
         [HttpPost("registerPerson")]
-        public async Task AddPerson(Person person)
+        public async Task<IActionResult> AddPerson(CreatePersonDto person)
         {
-          
-            await _peopleRepository.InsertOneAsync(person);
+            return CreateActionResult(await _service.AddAsync(person));
         }
 
         [HttpGet("getPeopleData")]
-        public IEnumerable<string> GetPeopleData()
+        public async Task<IActionResult> GetPeopleData()
         {
-            var people = _peopleRepository.FilterBy(
-                filter => filter.FirstName != "test",
-                projection => projection.FirstName
-                
-
-            );
-            return people;
-
+            return CreateActionResult(await _service.GetAllAsync());
         }
     }
 }

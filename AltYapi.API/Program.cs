@@ -77,6 +77,7 @@ builder.Services.AddDbContext<AppDbContext>(x =>
 builder.Services.Configure<MongoDbSettings>(builder.Configuration.GetSection("MongoDbSettings"));
 builder.Services.AddSingleton<IMongoDbSettings>(serviceProvider =>
         serviceProvider.GetRequiredService<IOptions<MongoDbSettings>>().Value);
+
 builder.Services.AddScoped(typeof(IMongoRepository<>), typeof(MongoRepository<>));
 
 builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());

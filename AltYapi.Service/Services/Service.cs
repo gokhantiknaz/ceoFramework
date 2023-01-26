@@ -1,4 +1,5 @@
-﻿using AltYapi.Core.Repositories;
+﻿using AltYapi.Core.Dtos;
+using AltYapi.Core.Repositories;
 using AltYapi.Core.Services;
 using AltYapi.Core.UnitOfWorks;
 using AltYapi.Repository;
@@ -27,7 +28,7 @@ namespace AltYapi.Service.Services
         public async Task<T> AddAsync(T entity)
         {
             await _repository.AddAsync(entity);
-          
+
             await _unitOfWork.CommitAsync();
             return entity;
         }
@@ -78,17 +79,18 @@ namespace AltYapi.Service.Services
             await _unitOfWork.CommitAsync();
         }
 
-         public async Task UpdateRangeAsync(IEnumerable<T> entities)
+        public async Task UpdateRangeAsync(IEnumerable<T> entities)
         {
             _repository.UpdateRange(entities);
             await _unitOfWork.CommitAsync();
-           
+
         }
 
 
-        public IQueryable<T> Where(Expression<Func<T, bool>> expression)
+        public  IQueryable<T> Where(Expression<Func<T, bool>> expression)
         {
-            return _repository.Where(expression);
+            var entities = _repository.Where(expression);
+            return entities;
         }
     }
 }

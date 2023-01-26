@@ -42,7 +42,16 @@ namespace AltYapi.API.Modules
             //Service ile bitenleri al
             builder.RegisterAssemblyTypes(apiAssembly, repoAssembly, serviceAssembly).Where(x => x.Name.EndsWith("Service")).AsImplementedInterfaces().InstancePerLifetimeScope();
 
-            builder.RegisterType<ProductServiceNoCaching>().As<IProductService>();
+            //builder.RegisterGeneric(typeof(ServiceMongo<,>)).As(typeof(IService<>));
+
+            //builder.RegisterGeneric(typeof(ServiceWithDtoMongo<,>)).As(typeof(IServiceWithDto<,>));
+
+            //builder.RegisterGeneric(typeof(PersonServiceWithDtoMongo)).As(typeof(IPersonServicesWithDto<>));
+
+
+            builder.RegisterType<PersonServiceWithDto>().As<IPersonServicesWithDto>();
+
+
 
         }
     }

@@ -12,6 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\AltYapi.RepositoryMongo\AltYapi.RepositoryMongo.csproj" />
     <ProjectReference Include="..\AltYapi.Repository\AltYapi.Repository.csproj" />
   </ItemGroup>
 

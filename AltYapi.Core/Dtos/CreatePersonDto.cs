@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AltYapi.Core.Models.ModelsMongo
+namespace AltYapi.Core.Dtos
 {
-    [BsonCollection("people")]
-    public class People : Document
+    public class CreatePersonDto
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
