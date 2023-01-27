@@ -3,6 +3,7 @@ using AltYapi.Core.Models.ModelsMongo;
 using AltYapi.Core.Repositories.RepositoriesMongo;
 using AltYapi.Core.Services;
 using AltYapi.Core.UnitOfWorks;
+using AltYapi.RepositoryMongo.UnitOfWorks;
 using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
@@ -14,18 +15,33 @@ namespace AltYapi.ServiceMongo.Service
     {
         private readonly IGenericRepositoryMongo<Entity> _repository;
         protected readonly IMapper _mapper;
-        public ServiceMongo(IGenericRepositoryMongo<Entity> repository, IUnitOfWork unitOfWork, IMapper mapper)
+        private readonly IUnitOfWorkMongo _unitOfWork;
+        public ServiceMongo(IGenericRepositoryMongo<Entity> repository, IUnitOfWorkMongo unitOfWork, IMapper mapper)
         {
             _repository = repository;
             _mapper = mapper;
+            _unitOfWork = unitOfWork;
         }
 
 
         public async Task<CustomResponseDto<Dto>> AddAsync(Dto dto)
         {
             var newEntity = _mapper.Map<Entity>(dto);
-            await _repository.InsertOneAsync(newEntity);
-            var newDto = _mapper.Map<Dto>(newEntity);
+             _repository.InsertOneAsync(newEntity);
+
+
+            // it will be null
+            var testProduct =  _repository.FindById(newEntity.Id.ToString());
+
+            // If everything is ok then:
+            await _unitOfWork.Commit();
+
+            // The product will be added only after commit
+             testProduct = _repository.FindById(newEntity.Id.ToString());
+
+
+
+            var newDto = _mapper.Map<Dto>(testProduct);
             return CustomResponseDto<Dto>.Success(StatusCodes.Status200OK, newDto);
         }
 
@@ -33,6 +49,7 @@ namespace AltYapi.ServiceMongo.Service
         {
             var newEntities = _mapper.Map<IEnumerable<Entity>>(dtos);
             await _repository.InsertManyAsync(newEntities);
+            await _unitOfWork.Commit();
             var newDtos = _mapper.Map<IEnumerable<Dto>>(newEntities);
             return CustomResponseDto<IEnumerable<Dto>>.Success(StatusCodes.Status200OK, newDtos);
         }
@@ -44,7 +61,9 @@ namespace AltYapi.ServiceMongo.Service
 
         public async Task<CustomResponseDto<IEnumerable<Dto>>> GetAllAsync()
         {
-            var entities =  _repository.AsQueryable().ToList();
+            var entities = _repository.AsQueryable().ToList();
+
+
             var dtos = _mapper.Map<IEnumerable<Dto>>(entities);
             return CustomResponseDto<IEnumerable<Dto>>.Success(StatusCodes.Status200OK, dtos);
         }

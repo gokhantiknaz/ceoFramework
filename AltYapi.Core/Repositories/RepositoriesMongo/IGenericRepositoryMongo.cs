@@ -24,7 +24,7 @@ namespace AltYapi.Core.Repositories.RepositoriesMongo
 
         void InsertOne(T document);
 
-        Task InsertOneAsync(T document);
+        void InsertOneAsync(T document);
 
         void InsertMany(IEnumerable<T> documents);
 

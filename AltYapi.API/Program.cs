@@ -11,6 +11,7 @@ using AltYapi.Core.UnitOfWorks;
 using AltYapi.Repository;
 using AltYapi.Repository.Repositories;
 using AltYapi.Repository.UnitOfWorks;
+using AltYapi.RepositoryMongo.Persistence;
 using AltYapi.RepositoryMongo.Repositories;
 using AltYapi.Service.Mapping;
 using AltYapi.Service.Services;
@@ -34,6 +35,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 //builder.Services.AddControllers(options => options.Filters.Add(new ValidateFilterAttribute())).AddFluentValidation(x => x.RegisterValidatorsFromAssemblyContaining<ProductDtoValidator>());
+MongoDbPersistence.Configure();
 
 builder.Services.AddControllers(options => options.Filters.Add(new ValidateFilterAttribute())).AddNewtonsoftJson();
 
@@ -43,7 +45,7 @@ builder.Services.AddValidatorsFromAssemblyContaining<ProductDtoValidator>();
 builder.Services.Configure<ApiBehaviorOptions>(options =>
 {
     options.SuppressModelStateInvalidFilter = true;
-   
+
 
 });
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -62,7 +64,7 @@ builder.Services.AddScoped(typeof(NotFoundFilter<>));
 //builder.Services.AddScoped<ICategoryService, CategoryService>();
 
 builder.Services.AddAutoMapper(typeof(MapProfile));
- builder.Services.AddAutoMapper(typeof(MapProfileMongo));
+builder.Services.AddAutoMapper(typeof(MapProfileMongo));
 
 builder.Services.AddDbContext<AppDbContext>(x =>
 {
@@ -71,15 +73,12 @@ builder.Services.AddDbContext<AppDbContext>(x =>
         options.MigrationsAssembly(Assembly.GetAssembly(typeof(AppDbContext)).GetName().Name);
     });
 
-   
+
 });
 
-//MongoDbSettings
-builder.Services.Configure<MongoDbSettings>(builder.Configuration.GetSection("MongoDbSettings"));
-builder.Services.AddSingleton<IMongoDbSettings>(serviceProvider =>
-        serviceProvider.GetRequiredService<IOptions<MongoDbSettings>>().Value);
 
- //builder.Services.AddScoped(typeof(IGenericRepositoryMongo<>), typeof(GenericRepositoryMongo<>));
+
+//builder.Services.AddScoped(typeof(IGenericRepositoryMongo<>), typeof(GenericRepositoryMongo<>));
 
 builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
 builder.Host.ConfigureContainer<ContainerBuilder>(containerBuilder => containerBuilder.RegisterModule(new RepoServiceModule()));
@@ -109,6 +108,6 @@ app.UseCustomException();
 
 app.UseAuthorization();
 
-app.MapControllers(); 
+app.MapControllers();
 
 app.Run();

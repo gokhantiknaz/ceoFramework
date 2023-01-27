@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AltYapi.Repository.Repositories
+namespace AltYapi.RepositoryMongo.Repositories
 {
     public interface IMongoContext : IDisposable
     {

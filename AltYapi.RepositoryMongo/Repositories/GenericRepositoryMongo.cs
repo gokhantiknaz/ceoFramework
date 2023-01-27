@@ -13,32 +13,15 @@ namespace AltYapi.RepositoryMongo.Repositories
       where T : IDocument
     {
 
-        protected readonly IMongoCollection<T> _collection;
-        private readonly MongoDbSettings settings;
+        protected readonly IMongoContext Context;
+        protected IMongoCollection<T> _collection;
 
-        public GenericRepositoryMongo(IOptions<MongoDbSettings> options)
+        public GenericRepositoryMongo(IMongoContext context)
         {
-            this.settings = options.Value;
-            var client = new MongoClient(this.settings.ConnectionString);
-            var db = client.GetDatabase(this.settings.DatabaseName);
-            this._collection = db.GetCollection<T>(typeof(T).Name.ToLowerInvariant());
+            Context = context;
+            _collection = Context.GetCollection<T>(typeof(T).Name);
+           
         }
-
-        //private readonly IMongoCollection<T> _collection;
-
-        //public GenericRepositoryMongo(IMongoDbSettings settings)
-        //{
-        //    var database = new MongoClient(settings.ConnectionString).GetDatabase(settings.DatabaseName);
-        //    _collection = database.GetCollection<T>(GenericRepositoryMongo<T>.GetCollectionName(typeof(T)));
-        //}
-
-        //private protected static string? GetCollectionName(Type documentType)
-        //{
-        //    return ((BsonCollectionAttribute)documentType.GetCustomAttributes(
-        //            typeof(BsonCollectionAttribute),
-        //            true)
-        //        .FirstOrDefault())?.CollectionName;
-        //}
 
         public virtual IQueryable<T> AsQueryable()
         {
@@ -94,12 +77,14 @@ namespace AltYapi.RepositoryMongo.Repositories
 
         public virtual void InsertOne(T document)
         {
-            _collection.InsertOne(document);
+            Context.AddCommand(() => _collection.InsertOneAsync(document));
         }
 
-        public virtual Task InsertOneAsync(T document)
+        public virtual void InsertOneAsync(T document)
         {
-            return Task.Run(() => _collection.InsertOneAsync(document));
+
+           Context.AddCommand(() => _collection.InsertOneAsync(document));
+         //   return Task.Run(() => _collection.InsertOneAsync(document));
         }
 
         public void InsertMany(IEnumerable<T> documents)

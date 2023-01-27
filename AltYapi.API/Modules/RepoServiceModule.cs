@@ -15,6 +15,7 @@ using AltYapi.ServiceMongo.Mapping;
 using Autofac;
 using System.Reflection;
 using Module = Autofac.Module;
+using AltYapi.RepositoryMongo.UnitOfWorks;
 
 namespace AltYapi.API.Modules
 {
@@ -30,12 +31,16 @@ namespace AltYapi.API.Modules
             builder.RegisterGeneric(typeof(ServiceMongo<,>)).As(typeof(IServiceWithDto<,>)).InstancePerLifetimeScope();
 
 
-            builder.RegisterType<UnitOfWork>().As<IUnitOfWork>();
+           // builder.RegisterType<UnitOfWork>().As<IUnitOfWork>();
+            builder.RegisterType<UnitOfWorkMongo>().As<IUnitOfWorkMongo>();
+
+            builder.RegisterType<MongoContext>().As<IMongoContext>();
+
 
             var apiAssembly = Assembly.GetExecutingAssembly();
             //   Herhangi bir class ismi yeterli AppDbContext, MapProfile yerine başka bir class de yazabilirdik.
             var repoAssembly = Assembly.GetAssembly(typeof(AppDbContext));
-            var repoAssemblyMongo = Assembly.GetAssembly(typeof(MongoConnect));
+            var repoAssemblyMongo = Assembly.GetAssembly(typeof(MongoContext));
             var serviceAssembly = Assembly.GetAssembly(typeof(MapProfile));
             var serviceAssemblyMongo = Assembly.GetAssembly(typeof(MapProfileMongo));
 
