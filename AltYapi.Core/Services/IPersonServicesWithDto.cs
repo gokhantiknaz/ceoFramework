@@ -1,11 +1,4 @@
 ﻿using AltYapi.Core.Dtos;
-using AltYapi.Core.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AltYapi.Core.Services
 {
@@ -14,7 +7,6 @@ namespace AltYapi.Core.Services
     {
         Task<CustomResponseDto<CreatePersonDto>> GetByIdAsync(int id);
         Task<CustomResponseDto<IEnumerable<CreatePersonDto>>> GetAllAsync();
-
         Task<CustomResponseDto<CreatePersonDto>> AddAsync(CreatePersonDto CreatePersonDto);
         Task<CustomResponseDto<IEnumerable<CreatePersonDto>>> AddRangeAsync(IEnumerable<CreatePersonDto> dtos);
         Task<CustomResponseDto<NoContentDto>> UpdateAsync(CreatePersonDto entity);

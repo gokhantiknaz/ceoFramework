@@ -16,16 +16,19 @@ namespace AltYapi.Repository.AutoHistory
         //.MapDefaultTypeIndices(m => m
         //.Add(typeof(Log), "log_history"));
 
-        private static readonly ElasticClient elasticClient = new ElasticClient(connSettings);
+        private static readonly ElasticClient elasticClient = new(connSettings);
+
 
         public static void CheckExistsAndInsert(ChangeLog log)
         {
             //elasticClient.DeleteIndex("change_log");         
             if (!elasticClient.Indices.Exists("change_log").Exists)
             {
-                var indexSettings = new IndexSettings();
-                indexSettings.NumberOfReplicas = 1;
-                indexSettings.NumberOfShards = 3;
+                var indexSettings = new IndexSettings
+                {
+                    NumberOfReplicas = 1,
+                    NumberOfShards = 3
+                };
 
 
                 var createIndexDescriptor = new CreateIndexDescriptor("change_history")

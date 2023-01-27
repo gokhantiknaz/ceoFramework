@@ -16,10 +16,10 @@ namespace AltYapi.RepositoryMongo.Repositories
         public MongoRepository(IMongoDbSettings settings)
         {
             var database = new MongoClient(settings.ConnectionString).GetDatabase(settings.DatabaseName);
-            _collection = database.GetCollection<T>(GetCollectionName(typeof(T)));
+            _collection = database.GetCollection<T>(MongoRepository<T>.GetCollectionName(typeof(T)));
         }
 
-        private protected string GetCollectionName(Type documentType)
+        private protected static string? GetCollectionName(Type documentType)
         {
             return ((BsonCollectionAttribute)documentType.GetCustomAttributes(
                     typeof(BsonCollectionAttribute),

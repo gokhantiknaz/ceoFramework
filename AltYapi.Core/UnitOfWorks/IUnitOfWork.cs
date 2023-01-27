@@ -5,6 +5,6 @@ namespace AltYapi.Core.UnitOfWorks
     public interface IUnitOfWork
     {
         Task CommitAsync();
-        void Commit();
+        void Commit(); 
     }
 }

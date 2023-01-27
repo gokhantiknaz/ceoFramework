@@ -1,6 +1,5 @@
 ﻿using AltYapi.Core.Dtos;
 using AltYapi.Core.Models;
-using AltYapi.Core.Models.ModelsMongo;
 using AutoMapper;
 
 namespace AltYapi.Service.Mapping
@@ -10,7 +9,7 @@ namespace AltYapi.Service.Mapping
         public MapProfile()
         {
             CreateMap<Person, CreatePersonDto>().ReverseMap();
-            CreateMap<People, CreatePersonDto>().ReverseMap();
+          
 
             CreateMap<Product, ProductDto>().ReverseMap();
             CreateMap<Category, CategoryDto>().ReverseMap();

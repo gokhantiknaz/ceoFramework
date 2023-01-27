@@ -38,7 +38,8 @@ namespace AltYapi.API.Controllers
         public async Task<IActionResult> All()
         {
             var products = await _productService.GetAllAsync();
-
+            var deneme = "";
+            int i = Convert.ToInt32(deneme);
             var productsDtos = _mapper.Map<List<ProductDto>>(products.ToList());
             // return Ok(CustomResponseDto<List<ProductDto>>.Success(200, productsDtos));
             return CreateActionResult(CustomResponseDto<List<ProductDto>>.Success(200, productsDtos));

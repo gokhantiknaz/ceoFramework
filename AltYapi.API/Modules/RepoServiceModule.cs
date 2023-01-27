@@ -1,11 +1,11 @@
-﻿using AltYapi.Caching;
-using AltYapi.Core.Repositories;
+﻿using AltYapi.Core.Repositories;
 using AltYapi.Core.Services;
 using AltYapi.Core.UnitOfWorks;
 using AltYapi.Repository;
 using AltYapi.Repository.Repositories;
 using AltYapi.Repository.UnitOfWorks;
 using AltYapi.Service.Mapping;
+using AltYapi.Service.Mongo.Service;
 using AltYapi.Service.Services;
 using Autofac;
 using System.Reflection;
@@ -23,8 +23,12 @@ namespace AltYapi.API.Modules
             builder.RegisterGeneric(typeof(Service<>)).As(typeof(IService<>)).InstancePerLifetimeScope();
             builder.RegisterGeneric(typeof(ServiceWithDto<,>)).As(typeof(IServiceWithDto<,>)).InstancePerLifetimeScope();
 
+            //builder.RegisterType<UnitOfWork>().As<IUnitOfWork>().InstancePerLifetimeScope();
             builder.RegisterType<UnitOfWork>().As<IUnitOfWork>().InstancePerLifetimeScope();
-            builder.RegisterType<ProductServiceWithDto>().As<IProductServicesWithDto>().InstancePerLifetimeScope();
+            builder.RegisterType<ProductServiceNoCaching>().As<IProductService>();
+
+
+            //builder.RegisterType<ProductServiceWithDto>().As<IProductServicesWithDto>().InstancePerLifetimeScope();
 
             var apiAssembly = Assembly.GetExecutingAssembly();
             //Herhangi bir class ismi yeterli AppDbContext,MapProfile yerine başka bir class de yazabilirdik.
@@ -49,7 +53,7 @@ namespace AltYapi.API.Modules
             //builder.RegisterGeneric(typeof(PersonServiceWithDtoMongo)).As(typeof(IPersonServicesWithDto<>));
 
 
-            builder.RegisterType<PersonServiceWithDto>().As<IPersonServicesWithDto>();
+            builder.RegisterType<PersonServiceMongo>().As<IPersonServicesWithDto>();
 
 
 

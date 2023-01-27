@@ -1,5 +1,5 @@
 ﻿
-namespace AltYapi.Service.Exceptions
+namespace AltYapi.Service.Mongo.Exceptions
 {
     public class NotFoundException : Exception
     {

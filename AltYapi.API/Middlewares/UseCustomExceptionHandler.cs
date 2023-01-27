@@ -1,10 +1,8 @@
 ﻿using AltYapi.API.Controllers;
 using AltYapi.Core.Dtos;
-using AltYapi.Core.Services;
 using AltYapi.Service.Exceptions;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
 using System.Text.Json;
 
 namespace AltYapi.API.Middlewares

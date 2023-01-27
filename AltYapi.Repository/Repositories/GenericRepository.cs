@@ -1,13 +1,6 @@
-﻿using AltYapi.Core.Models;
-using AltYapi.Core.Repositories;
+﻿using AltYapi.Core.Repositories;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.ChangeTracking;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AltYapi.Repository.Repositories
 {

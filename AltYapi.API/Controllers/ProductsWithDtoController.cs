@@ -1,8 +1,5 @@
 ﻿using AltYapi.Core.Dtos;
-using AltYapi.Core.Models;
 using AltYapi.Core.Services;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AltYapi.API.Controllers

@@ -1,16 +1,8 @@
-﻿using AltYapi.Core.Dtos;
-using AltYapi.Core.Repositories;
+﻿using AltYapi.Core.Repositories;
 using AltYapi.Core.Services;
 using AltYapi.Core.UnitOfWorks;
-using AltYapi.Repository;
-using AltYapi.Service.Exceptions;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AltYapi.Service.Services
 {

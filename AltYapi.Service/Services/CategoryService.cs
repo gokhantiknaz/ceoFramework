@@ -3,13 +3,7 @@ using AltYapi.Core.Models;
 using AltYapi.Core.Repositories;
 using AltYapi.Core.Services;
 using AltYapi.Core.UnitOfWorks;
-using AltYapi.Repository;
 using AutoMapper;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AltYapi.Service.Services
 {

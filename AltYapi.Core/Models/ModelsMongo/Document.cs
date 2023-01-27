@@ -12,5 +12,9 @@ namespace AltYapi.Core.Models.ModelsMongo
         public ObjectId Id { get; set; }
 
         public DateTime CreatedAt => Id.CreationTime;
+
+        public DateTime CreatedDate { get; set; }
+
+        public DateTime UpdatedDate { get; set; }
     }
 }

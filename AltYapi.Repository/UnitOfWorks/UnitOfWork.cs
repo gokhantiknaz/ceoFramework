@@ -1,9 +1,4 @@
 ﻿using AltYapi.Core.UnitOfWorks;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AltYapi.Repository.UnitOfWorks
 {
@@ -17,6 +12,18 @@ namespace AltYapi.Repository.UnitOfWorks
             _context = context;
         }
 
+        public IDisposable Session => throw new NotImplementedException();
+
+        public void AddOperation(Action operation)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void CleanOperations()
+        {
+            throw new NotImplementedException();
+        }
+
         public void Commit()
         {
             _context.SaveChanges();
@@ -25,6 +32,11 @@ namespace AltYapi.Repository.UnitOfWorks
         public async Task CommitAsync()
         {
             await _context.SaveChangesAsync();
+        }
+
+        public Task CommitChanges()
+        {
+            throw new NotImplementedException();
         }
     }
 }
