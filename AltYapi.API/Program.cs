@@ -15,6 +15,7 @@ using AltYapi.RepositoryMongo.Repositories;
 using AltYapi.Service.Mapping;
 using AltYapi.Service.Services;
 using AltYapi.Service.Validations;
+using AltYapi.ServiceMongo.Mapping;
 using Autofac;
 using Autofac.Core;
 using Autofac.Extensions.DependencyInjection;
@@ -61,7 +62,7 @@ builder.Services.AddScoped(typeof(NotFoundFilter<>));
 //builder.Services.AddScoped<ICategoryService, CategoryService>();
 
 builder.Services.AddAutoMapper(typeof(MapProfile));
-
+ builder.Services.AddAutoMapper(typeof(MapProfileMongo));
 
 builder.Services.AddDbContext<AppDbContext>(x =>
 {
@@ -78,7 +79,7 @@ builder.Services.Configure<MongoDbSettings>(builder.Configuration.GetSection("Mo
 builder.Services.AddSingleton<IMongoDbSettings>(serviceProvider =>
         serviceProvider.GetRequiredService<IOptions<MongoDbSettings>>().Value);
 
-builder.Services.AddScoped(typeof(IMongoRepository<>), typeof(MongoRepository<>));
+ //builder.Services.AddScoped(typeof(IGenericRepositoryMongo<>), typeof(GenericRepositoryMongo<>));
 
 builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
 builder.Host.ConfigureContainer<ContainerBuilder>(containerBuilder => containerBuilder.RegisterModule(new RepoServiceModule()));

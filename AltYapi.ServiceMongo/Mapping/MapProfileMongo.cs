@@ -3,12 +3,12 @@ using AltYapi.Core.Models.ModelsMongo;
 using AutoMapper;
 
 
-namespace AltYapi.Service.Mongo.Mapping
+namespace AltYapi.ServiceMongo.Mapping
 {
-    public class MapProfile : Profile
+    public class MapProfileMongo : Profile
     {
 
-        public MapProfile()
+        public MapProfileMongo()
         {
             CreateMap<People, CreatePersonDto>().ReverseMap();
         }

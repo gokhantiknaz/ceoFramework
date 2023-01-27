@@ -32,6 +32,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\AltYapi.Caching\AltYapi.Caching.csproj" />
+    <ProjectReference Include="..\AltYapi.ServiceMongo\AltYapi.ServiceMongo.csproj" />
   </ItemGroup>
 
 </Project>

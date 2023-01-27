@@ -12,8 +12,8 @@ namespace AltYapi.Service.Services
 
 
         private readonly IGenericRepository<Person> _repository;
-
-        public PersonServiceWithDto(IGenericRepository<Person> repository, IUnitOfWork unitOfWork, IMapper mapper) :base(repository, unitOfWork, mapper)
+        private readonly IMapper _mapper;
+        public PersonServiceWithDto(IGenericRepository<Person> repository,IUnitOfWork unitOfWork, IMapper mapper) :base(repository, unitOfWork, mapper)
         {
             _repository = repository;
         }

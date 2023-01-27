@@ -3,7 +3,7 @@ using System.Linq.Expressions;
 
 namespace AltYapi.Core.Repositories.RepositoriesMongo
 {
-    public interface IMongoRepository<T> where T : IDocument
+    public interface IGenericRepositoryMongo<T> where T : IDocument
     {
         IQueryable<T> AsQueryable();
 

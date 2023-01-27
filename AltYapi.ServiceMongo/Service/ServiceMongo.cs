@@ -2,18 +2,19 @@
 using AltYapi.Core.Models.ModelsMongo;
 using AltYapi.Core.Repositories.RepositoriesMongo;
 using AltYapi.Core.Services;
+using AltYapi.Core.UnitOfWorks;
 using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 
-namespace AltYapi.Service.Mongo.Service
+namespace AltYapi.ServiceMongo.Service
 {
     public class ServiceMongo<Entity, Dto> : IServiceWithDto<Entity, Dto> where Entity : Document where Dto : class
     {
-        private readonly IMongoRepository<Entity> _repository;
+        private readonly IGenericRepositoryMongo<Entity> _repository;
         protected readonly IMapper _mapper;
-        public ServiceMongo(IMongoRepository<Entity> repository, IMapper mapper)
+        public ServiceMongo(IGenericRepositoryMongo<Entity> repository, IUnitOfWork unitOfWork, IMapper mapper)
         {
             _repository = repository;
             _mapper = mapper;
@@ -43,7 +44,7 @@ namespace AltYapi.Service.Mongo.Service
 
         public async Task<CustomResponseDto<IEnumerable<Dto>>> GetAllAsync()
         {
-            var entities = await _repository.AsQueryable().ToListAsync();
+            var entities =  _repository.AsQueryable().ToList();
             var dtos = _mapper.Map<IEnumerable<Dto>>(entities);
             return CustomResponseDto<IEnumerable<Dto>>.Success(StatusCodes.Status200OK, dtos);
         }

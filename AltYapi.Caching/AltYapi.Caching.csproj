@@ -7,7 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\AltYap.Service.Mongo\AltYapi.Service.Mongo.csproj" />
     <ProjectReference Include="..\AltYapi.Service\AltYapi.Service.csproj" />
   </ItemGroup>
 

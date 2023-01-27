@@ -1,6 +1,7 @@
 ﻿using AltYapi.Core.Models.ModelsMongo;
 using AltYapi.Core.MongoDbSettings;
 using AltYapi.Core.Repositories.RepositoriesMongo;
+using Microsoft.Extensions.Options;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using System.Linq.Expressions;
@@ -8,24 +9,36 @@ using System.Linq.Expressions;
 
 namespace AltYapi.RepositoryMongo.Repositories
 {
-    public class MongoRepository<T> : IMongoRepository<T>
+    public class GenericRepositoryMongo<T> : IGenericRepositoryMongo<T>
       where T : IDocument
     {
-        private readonly IMongoCollection<T> _collection;
 
-        public MongoRepository(IMongoDbSettings settings)
+        protected readonly IMongoCollection<T> _collection;
+        private readonly MongoDbSettings settings;
+
+        public GenericRepositoryMongo(IOptions<MongoDbSettings> options)
         {
-            var database = new MongoClient(settings.ConnectionString).GetDatabase(settings.DatabaseName);
-            _collection = database.GetCollection<T>(MongoRepository<T>.GetCollectionName(typeof(T)));
+            this.settings = options.Value;
+            var client = new MongoClient(this.settings.ConnectionString);
+            var db = client.GetDatabase(this.settings.DatabaseName);
+            this._collection = db.GetCollection<T>(typeof(T).Name.ToLowerInvariant());
         }
 
-        private protected static string? GetCollectionName(Type documentType)
-        {
-            return ((BsonCollectionAttribute)documentType.GetCustomAttributes(
-                    typeof(BsonCollectionAttribute),
-                    true)
-                .FirstOrDefault())?.CollectionName;
-        }
+        //private readonly IMongoCollection<T> _collection;
+
+        //public GenericRepositoryMongo(IMongoDbSettings settings)
+        //{
+        //    var database = new MongoClient(settings.ConnectionString).GetDatabase(settings.DatabaseName);
+        //    _collection = database.GetCollection<T>(GenericRepositoryMongo<T>.GetCollectionName(typeof(T)));
+        //}
+
+        //private protected static string? GetCollectionName(Type documentType)
+        //{
+        //    return ((BsonCollectionAttribute)documentType.GetCustomAttributes(
+        //            typeof(BsonCollectionAttribute),
+        //            true)
+        //        .FirstOrDefault())?.CollectionName;
+        //}
 
         public virtual IQueryable<T> AsQueryable()
         {

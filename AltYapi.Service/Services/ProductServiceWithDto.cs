@@ -12,11 +12,16 @@ namespace AltYapi.Service.Services
     public class ProductServiceWithDto : ServiceWithDto<Product, ProductDto>, IProductServicesWithDto
     {
         private readonly IProductRepository _productRepository;
-
-        public ProductServiceWithDto(IGenericRepository<Product> repository, IUnitOfWork unitOfWork, IMapper mapper, IProductRepository productRepository) : base(repository, unitOfWork, mapper)
+        private readonly IUnitOfWork _unitOfWork;
+        private readonly IMapper _mapper;
+        public ProductServiceWithDto(IGenericRepository<Product> repository, IUnitOfWork unitOfWork, IMapper mapper, IProductRepository productRepository) : base(repository,unitOfWork, mapper)
         {
             _productRepository = productRepository;
+           // _unitOfWork = unitOfWork;
+            _mapper = mapper;
         }
+
+
 
         public async Task<CustomResponseDto<ProductDto>> AddAsync(ProductCreateDto dto)
         {
