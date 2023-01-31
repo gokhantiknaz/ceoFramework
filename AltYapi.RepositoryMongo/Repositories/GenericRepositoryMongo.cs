@@ -4,6 +4,7 @@ using AltYapi.Core.Repositories.RepositoriesMongo;
 using Microsoft.Extensions.Options;
 using MongoDB.Bson;
 using MongoDB.Driver;
+using MongoDB.Driver.Linq;
 using System.Linq.Expressions;
 
 
@@ -12,8 +13,9 @@ namespace AltYapi.RepositoryMongo.Repositories
     public class GenericRepositoryMongo<T> : IGenericRepositoryMongo<T>
       where T : IDocument
     {
+        public IMongoContext Context { get; set; }
 
-        public readonly IMongoContext Context;
+        //public  IMongoContext Context;
         public IMongoCollection<T> _collection;
 
         public GenericRepositoryMongo(IMongoContext context)
@@ -23,38 +25,38 @@ namespace AltYapi.RepositoryMongo.Repositories
            
         }
 
-        public virtual IQueryable<T> AsQueryable()
+        public IMongoQueryable<T> AsQueryable()
         {
-            return _collection.AsQueryable();
+            return _collection .AsQueryable();
         }
 
-        public virtual IEnumerable<T> FilterBy(
+        public  IEnumerable<T> FilterBy(
             Expression<Func<T, bool>> filterExpression)
         {
          
             return _collection.Find(filterExpression).ToEnumerable();
         }
 
-        public virtual IEnumerable<TProjected> FilterBy<TProjected>(
+        public  IEnumerable<TProjected> FilterBy<TProjected>(
             Expression<Func<T, bool>> filterExpression,
             Expression<Func<T, TProjected>> projectionExpression)
         {
             return _collection.Find(filterExpression).Project(projectionExpression).ToEnumerable();
         }
 
-        public virtual T FindOne(Expression<Func<T, bool>> filterExpression)
+        public  T FindOne(Expression<Func<T, bool>> filterExpression)
         {
             return _collection.Find(filterExpression).FirstOrDefault();
         }
 
        
 
-        public virtual Task<T> FindOneAsync(Expression<Func<T, bool>> filterExpression)
+        public  Task<T> FindOneAsync(Expression<Func<T, bool>> filterExpression)
         {
             return Task.Run(() => _collection.Find(filterExpression).FirstOrDefaultAsync());
         }
 
-        public virtual T FindById(string id)
+        public  T FindById(string id)
         {
             var objectId = new ObjectId(id);
             var filter = Builders<T>.Filter.Eq(doc => doc.Id, objectId);
@@ -64,7 +66,7 @@ namespace AltYapi.RepositoryMongo.Repositories
 
       
 
-        public virtual Task<T> FindByIdAsync(string id)
+        public  Task<T> FindByIdAsync(string id)
         {
             return Task.Run(() =>
             {
@@ -75,12 +77,12 @@ namespace AltYapi.RepositoryMongo.Repositories
         }
 
 
-        public virtual void InsertOne(T document)
+        public  void InsertOne(T document)
         {
             Context.AddCommand(() => _collection.InsertOneAsync(document));
         }
 
-        public virtual void InsertOneAsync(T document)
+        public  void InsertOneAsync(T document)
         {
 
            Context.AddCommand(() => _collection.InsertOneAsync(document));
@@ -93,7 +95,7 @@ namespace AltYapi.RepositoryMongo.Repositories
         }
 
 
-        public virtual async Task InsertManyAsync(IEnumerable<T> documents)
+        public  async Task InsertManyAsync(IEnumerable<T> documents)
         {
             await _collection.InsertManyAsync(documents);
         }
@@ -104,7 +106,7 @@ namespace AltYapi.RepositoryMongo.Repositories
             _collection.FindOneAndReplace(filter, document);
         }
 
-        public virtual async Task ReplaceOneAsync(T document)
+        public  async Task ReplaceOneAsync(T document)
         {
             var filter = Builders<T>.Filter.Eq(doc => doc.Id, document.Id);
             await _collection.FindOneAndReplaceAsync(filter, document);

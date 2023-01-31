@@ -1,33 +1,20 @@
-using AltYapi.API.Controllers;
 using AltYapi.API.Filters;
 using AltYapi.API.Middlewares;
 using AltYapi.API.Modules;
-using AltYapi.Core.Dtos;
 using AltYapi.Core.MongoDbSettings;
-using AltYapi.Core.Repositories;
-using AltYapi.Core.Repositories.RepositoriesMongo;
-using AltYapi.Core.Services;
-using AltYapi.Core.UnitOfWorks;
 using AltYapi.Repository;
-using AltYapi.Repository.Repositories;
-using AltYapi.Repository.UnitOfWorks;
 using AltYapi.RepositoryMongo.Persistence;
-using AltYapi.RepositoryMongo.Repositories;
 using AltYapi.Service.Mapping;
-using AltYapi.Service.Services;
 using AltYapi.Service.Validations;
 using AltYapi.ServiceMongo.Mapping;
 using Autofac;
-using Autofac.Core;
 using Autofac.Extensions.DependencyInjection;
 using FluentValidation;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 using NLog.Web;
-using System;
 using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -76,6 +63,15 @@ builder.Services.AddDbContext<AppDbContext>(x =>
 
 });
 
+
+//appsettings'i okuyarak "DatabaseSettings" classýndaki propertyleri set ediyoruz.
+//Öncelikle appsettings deki datalarýmýzý "DatabaseSettings" e baðlamak için. Bunu yazdýktan sonra herhangi bir classýn constructorýnda IOptions<DatabaseSettings> options diyerek bu deðerleri okuyabiliriz. Biz bunun yerine direkt olarak bir interface üzerinden almak için iki aþaðýdaki kodu yazdýk.
+builder.Services.Configure<DatabaseSettings>(builder.Configuration.GetSection("DatabaseSettings"));
+//==> Interface üzerinden almak için aþaðýdaki kodu yazdýk. Aþaðýdaki kodda IOptions ile DatabaseSettingsi tanýmladýk. Herhangi bir classýn contructorýnda IDatabaseSettings'i çaðýrdýðýmda bana DatabaseSettings appsettingsdeki ayarlar ile doldurulmuþ þekilde gelecektir.
+builder.Services.AddSingleton<IDatabaseSettings>(sp =>
+{
+    return sp.GetRequiredService<IOptions<DatabaseSettings>>().Value;
+});
 
 
 //builder.Services.AddScoped(typeof(IGenericRepositoryMongo<>), typeof(GenericRepositoryMongo<>));

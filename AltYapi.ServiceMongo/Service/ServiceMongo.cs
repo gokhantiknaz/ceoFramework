@@ -7,6 +7,7 @@ using AltYapi.RepositoryMongo.UnitOfWorks;
 using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
+using MongoDB.Driver;
 using System.Linq.Expressions;
 
 namespace AltYapi.ServiceMongo.Service
@@ -61,10 +62,11 @@ namespace AltYapi.ServiceMongo.Service
 
         public async Task<CustomResponseDto<IEnumerable<Dto>>> GetAllAsync()
         {
-            var entities = _repository.AsQueryable().ToList();
+            var entities =  _repository.AsQueryable();
 
+            var entitiess = await    IAsyncCursorSourceExtensions.ToListAsync(entities);
 
-            var dtos = _mapper.Map<IEnumerable<Dto>>(entities);
+            var dtos = _mapper.Map<IEnumerable<Dto>>(entitiess);
             return CustomResponseDto<IEnumerable<Dto>>.Success(StatusCodes.Status200OK, dtos);
         }
 

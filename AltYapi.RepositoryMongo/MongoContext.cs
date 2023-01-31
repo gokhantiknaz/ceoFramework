@@ -1,37 +1,27 @@
-﻿using AltYapi.Core.MongoDbSettings;
+﻿using AltYapi.Core.Models;
+using AltYapi.Core.MongoDbSettings;
 using AltYapi.RepositoryMongo.Repositories;
-using Microsoft.Extensions.Configuration;
 using MongoDB.Driver;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace AltYapi.RepositoryMongo
 {
     public class MongoContext : IMongoContext
     {
-        private IMongoDatabase Database;
-        public IClientSessionHandle Session;
+        private readonly IMongoDatabase Database;
+        public  IClientSessionHandle Session;
         private readonly IMongoClient MongoClient;
-        private readonly List<Func<Task>> _commands;
-        private readonly IConfiguration _configuration;
-
-        public MongoContext(IConfiguration configuration)
+        private static  List<Func<Task>> _commands;
+        public MongoContext( IDatabaseSettings databaseSettings)
         {
-            _configuration = configuration;
-
-            MongoClient=new MongoClient(_configuration["MongoSettings:Connection"]);
-            Database = MongoClient.GetDatabase(_configuration["MongoSettings:DatabaseName"]);
-            // Every command will be stored and it'll be processed at SaveChanges
-            _commands = new List<Func<Task>>();
+             MongoClient = new MongoClient(databaseSettings.ConnectionString);
+            //Clientımızı oluşturduk client üzerinden veritabanını aldım. "databaseSettings.DatabaseName" hangi database'e bağlanmak istediğimizi belirttik.
+             Database = MongoClient.GetDatabase(databaseSettings.DatabaseName);
+            _commands = new List<Func<Task>>(); 
         }
 
         public async Task<int> SaveChanges()
-        {
-          
-
+        {        
             using (Session = await MongoClient.StartSessionAsync())
             {
                 Session.StartTransaction();

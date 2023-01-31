@@ -16,6 +16,8 @@ using Autofac;
 using System.Reflection;
 using Module = Autofac.Module;
 using AltYapi.RepositoryMongo.UnitOfWorks;
+using UnitOfWork = AltYapi.Repository.UnitOfWorks.UnitOfWork;
+using IUnitOfWork = AltYapi.Core.UnitOfWorks.IUnitOfWork;
 
 namespace AltYapi.API.Modules
 {
@@ -58,6 +60,7 @@ namespace AltYapi.API.Modules
 
             //  builder.RegisterType<ProductServiceWithCaching>().As<IProductService>();
 
+            //builder.RegisterType<PersonServiceWithDto>().As<IPersonServicesWithDto>();
             builder.RegisterType<PersonServiceMongoWithDto>().As<IPersonServicesWithDto>();
 
         }

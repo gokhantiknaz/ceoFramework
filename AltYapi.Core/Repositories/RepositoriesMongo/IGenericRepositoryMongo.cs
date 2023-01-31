@@ -1,11 +1,12 @@
 ﻿using AltYapi.Core.Models.ModelsMongo;
+using MongoDB.Driver.Linq;
 using System.Linq.Expressions;
 
 namespace AltYapi.Core.Repositories.RepositoriesMongo
 {
     public interface IGenericRepositoryMongo<T> where T : IDocument
     {
-        IQueryable<T> AsQueryable();
+        IMongoQueryable<T> AsQueryable();
 
         IEnumerable<T> FilterBy(
             Expression<Func<T, bool>> filterExpression);
