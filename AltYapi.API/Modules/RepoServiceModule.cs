@@ -32,7 +32,7 @@ namespace AltYapi.API.Modules
 
 
            // builder.RegisterType<UnitOfWork>().As<IUnitOfWork>();
-            builder.RegisterType<UnitOfWorkMongo>().As<IUnitOfWorkMongo>();
+            builder.RegisterType<RepositoryMongo.UnitOfWorks.UnitOfWork>().As<RepositoryMongo.UnitOfWorks.IUnitOfWork>();
 
             builder.RegisterType<MongoContext>().As<IMongoContext>();
 

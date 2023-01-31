@@ -1,0 +1,2 @@
+MongoService eklemeyebiliriz kullaným amacýna göre MongoRepository IGenericRepository den miras alabilir.
+Proje gelinde veritabaný baðlantýsý anýnda deðiþtirilebilir.

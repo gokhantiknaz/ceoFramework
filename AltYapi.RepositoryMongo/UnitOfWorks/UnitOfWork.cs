@@ -9,11 +9,11 @@ using System.Threading.Tasks;
 
 namespace AltYapi.RepositoryMongo.UnitOfWorks
 {
-    public class UnitOfWorkMongo : IUnitOfWorkMongo
+    public class UnitOfWork : IUnitOfWork
     {
-        private readonly IMongoContext _context;
+        public readonly IMongoContext _context;
 
-        public UnitOfWorkMongo(IMongoContext context)
+        public UnitOfWork(IMongoContext context)
         {
             _context = context;
         }

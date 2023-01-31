@@ -15,8 +15,8 @@ namespace AltYapi.ServiceMongo.Service
     {
         private readonly IGenericRepositoryMongo<Entity> _repository;
         protected readonly IMapper _mapper;
-        private readonly IUnitOfWorkMongo _unitOfWork;
-        public ServiceMongo(IGenericRepositoryMongo<Entity> repository, IUnitOfWorkMongo unitOfWork, IMapper mapper)
+        private readonly RepositoryMongo.UnitOfWorks.IUnitOfWork _unitOfWork;
+        public ServiceMongo(IGenericRepositoryMongo<Entity> repository, RepositoryMongo.UnitOfWorks.IUnitOfWork unitOfWork, IMapper mapper)
         {
             _repository = repository;
             _mapper = mapper;

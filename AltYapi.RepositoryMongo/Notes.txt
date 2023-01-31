@@ -1,0 +1,44 @@
+Deploying a MongoDB Cluster with Docker
+
+https://www.mongodb.com/compatibility/deploying-a-mongodb-cluster-with-docker
+https://www.sohamkamani.com/docker/mongo-replica-set/
+
+Create a Docker Network
+docker network create mongoCluster
+
+Start MongoDB Instances
+docker run -d --rm -p 27017:27017 --name mongo1 --network mongoCluster mongo:5 mongod --replSet myReplicaSet --bind_ip localhost,mongo1
+
+docker run -d --rm -p 27018:27017 --name mongo2 --network mongoCluster mongo:5 mongod --replSet myReplicaSet --bind_ip localhost,mongo2
+ 
+docker run -d --rm -p 27019:27017 --name mongo3 --network mongoCluster mongo:5 mongod --replSet myReplicaSet --bind_ip localhost,mongo3
+
+--Configuring Database Replication
+docker exec -it mongo1 mongosh
+
+> db = (new Mongo('localhost:27017')).getDB('test')
+test
+> config = {
+  	"_id" : "myReplicaSet",
+  	"members" : [
+  		{
+  			"_id" : 0,
+  			"host" : "mongo1:27017"
+  		},
+  		{
+  			"_id" : 1,
+  			"host" : "mongo2:27017"
+  		},
+  		{
+  			"_id" : 2,
+  			"host" : "mongo3:27017"
+  		}
+  	]
+  }
+
+  --------------------------------------------------
+  > rs.initiate(config)
+{ "ok" : 1 }
+
+--------------------------
+myReplicaSet:PRIMARY>

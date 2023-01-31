@@ -15,9 +15,12 @@ namespace AltYapi.ServiceMongo.Service
 
         private readonly IGenericRepositoryMongo<People> _repository;
 
-        public PersonServiceMongoWithDto(IGenericRepositoryMongo<People> repository,IUnitOfWorkMongo unitOfWork, IMapper mapper) : base(repository, unitOfWork, mapper)
+        private readonly RepositoryMongo.UnitOfWorks.IUnitOfWork _unitOfWork;
+
+        public PersonServiceMongoWithDto(IGenericRepositoryMongo<People> repository, RepositoryMongo.UnitOfWorks.IUnitOfWork unitOfWork, IMapper mapper) : base(repository, unitOfWork, mapper)
         {
             _repository = repository;
+            _unitOfWork=unitOfWork;
         }
     }
 }

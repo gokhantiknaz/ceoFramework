@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AltYapi.RepositoryMongo.UnitOfWorks
 {
-    public interface IUnitOfWorkMongo : IDisposable
+    public interface IUnitOfWork : IDisposable
     {
         Task<bool> Commit();
     }

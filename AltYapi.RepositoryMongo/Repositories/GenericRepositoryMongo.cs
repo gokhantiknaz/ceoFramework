@@ -13,8 +13,8 @@ namespace AltYapi.RepositoryMongo.Repositories
       where T : IDocument
     {
 
-        protected readonly IMongoContext Context;
-        protected IMongoCollection<T> _collection;
+        public readonly IMongoContext Context;
+        public IMongoCollection<T> _collection;
 
         public GenericRepositoryMongo(IMongoContext context)
         {
