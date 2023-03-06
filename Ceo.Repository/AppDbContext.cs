@@ -60,6 +60,14 @@ namespace AltYapi.Repository
                                 Entry(entityReference).Property(x => x.UpdatedDate).OriginalValue = entityReference.UpdatedDate;
                                 break;
                             }
+                        case EntityState.Detached:
+                            break;
+                        case EntityState.Unchanged:
+                            break;
+                        case EntityState.Deleted:
+                            break;
+                        default:
+                            throw new ArgumentOutOfRangeException();
                     }
                 }
             }

@@ -4,6 +4,7 @@ using AltYapi.Repository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AltYapi.Repository.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230126073024_Person")]
+    partial class Person
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -22,7 +25,7 @@ namespace AltYapi.Repository.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("AltYapi.Core.Models.Category", b =>
+            modelBuilder.Entity("Ceo.Core.Models.Category", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -71,7 +74,7 @@ namespace AltYapi.Repository.Migrations
                         });
                 });
 
-            modelBuilder.Entity("AltYapi.Core.Models.Log", b =>
+            modelBuilder.Entity("Ceo.Core.Models.Log", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -111,7 +114,7 @@ namespace AltYapi.Repository.Migrations
                     b.ToTable("Log", (string)null);
                 });
 
-            modelBuilder.Entity("AltYapi.Core.Models.Person", b =>
+            modelBuilder.Entity("Ceo.Core.Models.Person", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -144,7 +147,7 @@ namespace AltYapi.Repository.Migrations
                     b.ToTable("People");
                 });
 
-            modelBuilder.Entity("AltYapi.Core.Models.Product", b =>
+            modelBuilder.Entity("Ceo.Core.Models.Product", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -231,7 +234,7 @@ namespace AltYapi.Repository.Migrations
                         });
                 });
 
-            modelBuilder.Entity("AltYapi.Core.Models.ProductFeature", b =>
+            modelBuilder.Entity("Ceo.Core.Models.ProductFeature", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -277,9 +280,9 @@ namespace AltYapi.Repository.Migrations
                         });
                 });
 
-            modelBuilder.Entity("AltYapi.Core.Models.Product", b =>
+            modelBuilder.Entity("Ceo.Core.Models.Product", b =>
                 {
-                    b.HasOne("AltYapi.Core.Models.Category", "Category")
+                    b.HasOne("Ceo.Core.Models.Category", "Category")
                         .WithMany("Products")
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -288,23 +291,23 @@ namespace AltYapi.Repository.Migrations
                     b.Navigation("Category");
                 });
 
-            modelBuilder.Entity("AltYapi.Core.Models.ProductFeature", b =>
+            modelBuilder.Entity("Ceo.Core.Models.ProductFeature", b =>
                 {
-                    b.HasOne("AltYapi.Core.Models.Product", "Product")
+                    b.HasOne("Ceo.Core.Models.Product", "Product")
                         .WithOne("ProductFeature")
-                        .HasForeignKey("AltYapi.Core.Models.ProductFeature", "ProductId")
+                        .HasForeignKey("Ceo.Core.Models.ProductFeature", "ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Product");
                 });
 
-            modelBuilder.Entity("AltYapi.Core.Models.Category", b =>
+            modelBuilder.Entity("Ceo.Core.Models.Category", b =>
                 {
                     b.Navigation("Products");
                 });
 
-            modelBuilder.Entity("AltYapi.Core.Models.Product", b =>
+            modelBuilder.Entity("Ceo.Core.Models.Product", b =>
                 {
                     b.Navigation("ProductFeature");
                 });
