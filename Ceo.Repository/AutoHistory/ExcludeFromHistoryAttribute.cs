@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AltYapi.Repository.AutoHistory
+namespace Ceo.Repository.AutoHistory
 {
     public class ExcludeFromHistoryAttribute : Attribute
     {

@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Http;
-using AltYapi.Core.Dtos;
+using Ceo.Core.Dtos;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 
-namespace AltYapi.API.Filters
+namespace Ceo.API.Filters
 {
     public class ValidateFilterAttribute : ActionFilterAttribute
     {

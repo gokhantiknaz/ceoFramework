@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
 
-namespace AltYapi.Repository.Migrations
+namespace Ceo.Repository.Migrations
 {
     /// <inheritdoc />
     public partial class AltYapiTables : Migration

@@ -1,12 +1,10 @@
-using AltYapi.API.Filters;
-using AltYapi.API.Middlewares;
-using AltYapi.API.Modules;
-using AltYapi.Core.MongoDbSettings;
-using AltYapi.Repository;
-using AltYapi.RepositoryMongo.Persistence;
-using AltYapi.Service.Mapping;
-using AltYapi.Service.Validations;
-using AltYapi.ServiceMongo.Mapping;
+using Ceo.API.Filters;
+using Ceo.API.Middlewares;
+using Ceo.API.Modules;
+using Ceo.Core.MongoDbSettings;
+using Ceo.Repository;
+using Ceo.Service.Mapping;
+using Ceo.Service.Validations;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using FluentValidation;
@@ -22,7 +20,6 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 //builder.Services.AddControllers(options => options.Filters.Add(new ValidateFilterAttribute())).AddFluentValidation(x => x.RegisterValidatorsFromAssemblyContaining<ProductDtoValidator>());
-MongoDbPersistence.Configure();
 
 builder.Services.AddControllers(options => options.Filters.Add(new ValidateFilterAttribute())).AddNewtonsoftJson();
 
@@ -51,7 +48,7 @@ builder.Services.AddScoped(typeof(NotFoundFilter<>));
 //builder.Services.AddScoped<ICategoryService, CategoryService>();
 
 builder.Services.AddAutoMapper(typeof(MapProfile));
-builder.Services.AddAutoMapper(typeof(MapProfileMongo));
+
 
 builder.Services.AddDbContext<AppDbContext>(x =>
 {
@@ -64,10 +61,10 @@ builder.Services.AddDbContext<AppDbContext>(x =>
 });
 
 
-//appsettings'i okuyarak "DatabaseSettings" classýndaki propertyleri set ediyoruz.
-//Öncelikle appsettings deki datalarýmýzý "DatabaseSettings" e baðlamak için. Bunu yazdýktan sonra herhangi bir classýn constructorýnda IOptions<DatabaseSettings> options diyerek bu deðerleri okuyabiliriz. Biz bunun yerine direkt olarak bir interface üzerinden almak için iki aþaðýdaki kodu yazdýk.
+//appsettings'i okuyarak "DatabaseSettings" classï¿½ndaki propertyleri set ediyoruz.
+//ï¿½ncelikle appsettings deki datalarï¿½mï¿½zï¿½ "DatabaseSettings" e baï¿½lamak iï¿½in. Bunu yazdï¿½ktan sonra herhangi bir classï¿½n constructorï¿½nda IOptions<DatabaseSettings> options diyerek bu deï¿½erleri okuyabiliriz. Biz bunun yerine direkt olarak bir interface ï¿½zerinden almak iï¿½in iki aï¿½aï¿½ï¿½daki kodu yazdï¿½k.
 builder.Services.Configure<DatabaseSettings>(builder.Configuration.GetSection("DatabaseSettings"));
-//==> Interface üzerinden almak için aþaðýdaki kodu yazdýk. Aþaðýdaki kodda IOptions ile DatabaseSettingsi tanýmladýk. Herhangi bir classýn contructorýnda IDatabaseSettings'i çaðýrdýðýmda bana DatabaseSettings appsettingsdeki ayarlar ile doldurulmuþ þekilde gelecektir.
+//==> Interface ï¿½zerinden almak iï¿½in aï¿½aï¿½ï¿½daki kodu yazdï¿½k. Aï¿½aï¿½ï¿½daki kodda IOptions ile DatabaseSettingsi tanï¿½mladï¿½k. Herhangi bir classï¿½n contructorï¿½nda IDatabaseSettings'i ï¿½aï¿½ï¿½rdï¿½ï¿½ï¿½mda bana DatabaseSettings appsettingsdeki ayarlar ile doldurulmuï¿½ ï¿½ekilde gelecektir.
 builder.Services.AddSingleton<IDatabaseSettings>(sp =>
 {
     return sp.GetRequiredService<IOptions<DatabaseSettings>>().Value;
@@ -99,7 +96,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-//Baþlarda olmasý daha iyi olur.
+//Baï¿½larda olmasï¿½ daha iyi olur.
 app.UseCustomException();
 
 app.UseAuthorization();

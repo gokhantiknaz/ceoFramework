@@ -1,14 +1,14 @@
-﻿using AltYapi.Core.Dtos;
-using AltYapi.Core.Models;
-using AltYapi.Core.Models.ModelsMongo;
-using AltYapi.Core.Repositories.RepositoriesMongo;
-using AltYapi.Core.Services;
-using AltYapi.Service.Services;
+﻿using Ceo.Core.Dtos;
+using Ceo.Core.Models;
+using Ceo.Core.Models.ModelsMongo;
+using Ceo.Core.Repositories.RepositoriesMongo;
+using Ceo.Core.Services;
+using Ceo.Service.Services;
 using Autofac.Core;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace AltYapi.API.Controllers.MongoOrnekler
+namespace Ceo.API.Controllers.MongoOrnekler
 {
     public class MongoOrnekController : CustomBaseController
     {

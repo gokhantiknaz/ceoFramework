@@ -1,7 +1,7 @@
 ﻿using System.Linq.Expressions;
 
 
-namespace AltYapi.Core.Repositories
+namespace Ceo.Core.Repositories
 {
     public interface IGenericRepository<T> where T : class
     {

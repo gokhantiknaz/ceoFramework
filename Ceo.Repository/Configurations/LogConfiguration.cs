@@ -1,8 +1,8 @@
-﻿using AltYapi.Core.Models;
+﻿using Ceo.Core.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace AltYapi.Repository.Configurations
+namespace Ceo.Repository.Configurations
 {
     internal class LogConfiguration:IEntityTypeConfiguration<Log>
     {

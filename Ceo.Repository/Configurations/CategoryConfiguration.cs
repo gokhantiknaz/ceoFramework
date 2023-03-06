@@ -1,9 +1,9 @@
-﻿using AltYapi.Core;
-using AltYapi.Core.Models;
+﻿using Ceo.Core;
+using Ceo.Core.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace AltYapi.Repository.Configurations
+namespace Ceo.Repository.Configurations
 {
     internal class CategoryConfiguration : IEntityTypeConfiguration<Category>
     {

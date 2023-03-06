@@ -4,7 +4,7 @@
     <TargetFramework>net7.0</TargetFramework>
     <Nullable>disable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <RootNamespace>AltYapi.API</RootNamespace>
+    <RootNamespace>Ceo.API</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
@@ -32,8 +32,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\AltYapi.Caching\AltYapi.Caching.csproj" />
-    <ProjectReference Include="..\AltYapi.ServiceMongo\AltYapi.ServiceMongo.csproj" />
+    <ProjectReference Include="..\Ceo.Caching\Ceo.Caching.csproj" />
+    <ProjectReference Include="..\Ceo.Core\Ceo.Core.csproj" />
+    <ProjectReference Include="..\Ceo.Repository\Ceo.Repository.csproj" />
+    <ProjectReference Include="..\Ceo.ServiceMongo\Ceo.ServiceMongo.csproj" />
+    <ProjectReference Include="..\Ceo.Service\Ceo.Service.csproj" />
   </ItemGroup>
 
 </Project>

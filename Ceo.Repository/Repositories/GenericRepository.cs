@@ -1,8 +1,8 @@
-﻿using AltYapi.Core.Repositories;
+﻿using Ceo.Core.Repositories;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 
-namespace AltYapi.Repository.Repositories
+namespace Ceo.Repository.Repositories
 {
     public class GenericRepository<T> : IGenericRepository<T> where T : class
     {

@@ -1,11 +1,11 @@
-﻿using AltYapi.Core;
-using AltYapi.Core.Models;
-using AltYapi.Repository.AutoHistory;
+﻿using Ceo.Core;
+using Ceo.Core.Models;
+using Ceo.Repository.AutoHistory;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using System.Reflection;
 
-namespace AltYapi.Repository
+namespace Ceo.Repository
 {
     public class AppDbContext : DbContext
     {

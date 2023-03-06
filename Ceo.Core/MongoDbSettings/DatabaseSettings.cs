@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AltYapi.Core.MongoDbSettings
+namespace Ceo.Core.MongoDbSettings
 {
     public interface IDatabaseSettings
     {

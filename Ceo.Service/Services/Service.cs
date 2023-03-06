@@ -1,10 +1,10 @@
-﻿using AltYapi.Core.Repositories;
-using AltYapi.Core.Services;
-using AltYapi.Core.UnitOfWorks;
+﻿using Ceo.Core.Repositories;
+using Ceo.Core.Services;
+using Ceo.Core.UnitOfWorks;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 
-namespace AltYapi.Service.Services
+namespace Ceo.Service.Services
 {
     public class Service<T> : IService<T> where T : class
     {

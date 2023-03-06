@@ -1,8 +1,8 @@
-﻿using AltYapi.Core.Dtos;
+﻿using Ceo.Core.Dtos;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace AltYapi.API.Controllers
+namespace Ceo.API.Controllers
 {
 
     [Route("api/[controller]")]

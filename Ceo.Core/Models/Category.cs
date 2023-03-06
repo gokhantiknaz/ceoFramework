@@ -1,4 +1,4 @@
-﻿namespace AltYapi.Core.Models
+﻿namespace Ceo.Core.Models
 {
     public class Category:BaseEntity
     {

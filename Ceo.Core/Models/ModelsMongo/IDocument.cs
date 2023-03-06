@@ -1,4 +1,4 @@
-﻿using AltYapi.Core.MongoDbSettings;
+﻿using Ceo.Core.MongoDbSettings;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 using System;
@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AltYapi.Core.Models.ModelsMongo
+namespace Ceo.Core.Models.ModelsMongo
 {
     public interface IDocument
     {

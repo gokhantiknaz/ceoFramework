@@ -1,11 +1,11 @@
-﻿using AltYapi.Core.Models;
+﻿using Ceo.Core.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AltYapi.Repository.Fake
+namespace Ceo.Repository.Fake
 {
     public class User: BaseEntity
     {

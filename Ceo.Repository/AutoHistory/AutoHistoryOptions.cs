@@ -5,7 +5,7 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 
-namespace AltYapi.Repository.AutoHistory
+namespace Ceo.Repository.AutoHistory
 {
     public sealed class AutoHistoryOptions
     {

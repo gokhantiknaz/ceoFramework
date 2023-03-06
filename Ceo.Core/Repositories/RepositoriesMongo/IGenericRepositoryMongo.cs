@@ -1,8 +1,8 @@
-﻿using AltYapi.Core.Models.ModelsMongo;
+﻿using Ceo.Core.Models.ModelsMongo;
 using MongoDB.Driver.Linq;
 using System.Linq.Expressions;
 
-namespace AltYapi.Core.Repositories.RepositoriesMongo
+namespace Ceo.Core.Repositories.RepositoriesMongo
 {
     public interface IGenericRepositoryMongo<T> where T : IDocument
     {

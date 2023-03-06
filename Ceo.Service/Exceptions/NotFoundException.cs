@@ -1,5 +1,5 @@
 ﻿
-namespace AltYapi.Service.Exceptions
+namespace Ceo.Service.Exceptions
 {
     public class NotFoundException : Exception
     {

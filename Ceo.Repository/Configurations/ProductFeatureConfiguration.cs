@@ -1,5 +1,5 @@
-﻿using AltYapi.Core;
-using AltYapi.Core.Models;
+﻿using Ceo.Core;
+using Ceo.Core.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AltYapi.Repository.Configurations
+namespace Ceo.Repository.Configurations
 {
     internal class ProductFeatureConfiguration : IEntityTypeConfiguration<ProductFeature>
     {

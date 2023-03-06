@@ -1,6 +1,6 @@
-﻿using AltYapi.Core.Dtos;
+﻿using Ceo.Core.Dtos;
 
-namespace AltYapi.Core.Services
+namespace Ceo.Core.Services
 {
 
     public interface IPersonServicesWithDto 

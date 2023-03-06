@@ -1,9 +1,9 @@
-﻿using AltYapi.API.Filters;
-using AltYapi.Repository.Fake;
+﻿using Ceo.API.Filters;
+using Ceo.Repository.Fake;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 
-namespace AltYapi.API.Controllers.Ornekler
+namespace Ceo.API.Controllers.Ornekler
 {
     [ServiceFilter(typeof(NotFoundFilter<User>))]
     public class HttpMetodOrnekleriController : CustomBaseController

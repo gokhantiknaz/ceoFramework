@@ -1,6 +1,6 @@
-﻿using AltYapi.Core.Models;
+﻿using Ceo.Core.Models;
 
-namespace AltYapi.Core.Repositories
+namespace Ceo.Core.Repositories
 {
     public interface ICategoryRepository:IGenericRepository<Category>
     {

@@ -1,7 +1,7 @@
-﻿using AltYapi.Core.Dtos;
-using AltYapi.Core.Models;
+﻿using Ceo.Core.Dtos;
+using Ceo.Core.Models;
 
-namespace AltYapi.Core.Services
+namespace Ceo.Core.Services
 {
     public interface IProductService : IService<Product>
     {

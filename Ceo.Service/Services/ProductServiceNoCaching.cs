@@ -1,11 +1,11 @@
-﻿using AltYapi.Core.Dtos;
-using AltYapi.Core.Models;
-using AltYapi.Core.Repositories;
-using AltYapi.Core.Services;
-using AltYapi.Core.UnitOfWorks;
+﻿using Ceo.Core.Dtos;
+using Ceo.Core.Models;
+using Ceo.Core.Repositories;
+using Ceo.Core.Services;
+using Ceo.Core.UnitOfWorks;
 using AutoMapper;
 
-namespace AltYapi.Service.Services
+namespace Ceo.Service.Services
 {
     public class ProductServiceNoCaching : Service<Product>, IProductService
     {

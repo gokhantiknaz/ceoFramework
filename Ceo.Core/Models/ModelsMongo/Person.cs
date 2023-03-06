@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AltYapi.Core.Models.ModelsMongo
+namespace Ceo.Core.Models.ModelsMongo
 {
     [BsonCollection("people")]
     public class People : Document

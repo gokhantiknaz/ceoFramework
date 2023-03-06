@@ -1,6 +1,6 @@
 ﻿
 
-namespace AltYapi.Core.Models
+namespace Ceo.Core.Models
 {
     //BaseEntity vermemize gerek yok product a bire bir bağlı
     public class ProductFeature

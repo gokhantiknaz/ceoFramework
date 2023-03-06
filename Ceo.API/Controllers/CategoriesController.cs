@@ -1,8 +1,8 @@
-﻿using AltYapi.Core.Services;
+﻿using Ceo.Core.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace AltYapi.API.Controllers
+namespace Ceo.API.Controllers
 {
 
     public class CategoriesController : CustomBaseController

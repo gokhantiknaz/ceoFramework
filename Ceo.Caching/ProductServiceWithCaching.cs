@@ -1,9 +1,9 @@
-﻿using AltYapi.Core.Dtos;
-using AltYapi.Core.Models;
-using AltYapi.Core.Repositories;
-using AltYapi.Core.Services;
-using AltYapi.Core.UnitOfWorks;
-using AltYapi.Service.Exceptions;
+﻿using Ceo.Core.Dtos;
+using Ceo.Core.Models;
+using Ceo.Core.Repositories;
+using Ceo.Core.Services;
+using Ceo.Core.UnitOfWorks;
+using Ceo.Service.Exceptions;
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Memory;
@@ -14,7 +14,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AltYapi.Caching
+namespace Ceo.Caching
 {
     public class ProductServiceWithCaching : IProductService
     {

@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Dynamic;
 using System.Text.Json;
 
-namespace AltYapi.Repository.AutoHistory
+namespace Ceo.Repository.AutoHistory
 {
     public static class DbContextExtensions2
     {

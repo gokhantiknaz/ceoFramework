@@ -1,7 +1,7 @@
-﻿using AltYapi.Core.Dtos;
+﻿using Ceo.Core.Dtos;
 using FluentValidation;
 
-namespace AltYapi.Service.Validations
+namespace Ceo.Service.Validations
 {
     public class ProductDtoValidator : AbstractValidator<ProductCreateDto>
     {

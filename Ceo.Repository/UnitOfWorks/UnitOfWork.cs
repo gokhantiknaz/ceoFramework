@@ -1,6 +1,6 @@
-﻿using AltYapi.Core.UnitOfWorks;
+﻿using Ceo.Core.UnitOfWorks;
 
-namespace AltYapi.Repository.UnitOfWorks
+namespace Ceo.Repository.UnitOfWorks
 {
     public class UnitOfWork : IUnitOfWork
     {

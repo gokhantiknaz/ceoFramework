@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AltYapi.Core.Dtos
+namespace Ceo.Core.Dtos
 {
     public class CategoryDto
     {

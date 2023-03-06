@@ -9,7 +9,7 @@
     }
   },
   "profiles": {
-    "AltYapi.API": {
+    "Ceo.API": {
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,

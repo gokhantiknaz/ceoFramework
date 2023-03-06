@@ -1,10 +1,10 @@
-﻿using AltYapi.Core.Dtos;
-using AltYapi.Core.Models;
-using AltYapi.Core.Services;
+﻿using Ceo.Core.Dtos;
+using Ceo.Core.Models;
+using Ceo.Core.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace AltYapi.API.Controllers
+namespace Ceo.API.Controllers
 {
 
     public class CategoryWithDtoControllerController : CustomBaseController

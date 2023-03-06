@@ -1,6 +1,6 @@
 ﻿
 
-namespace AltYapi.Core.UnitOfWorks
+namespace Ceo.Core.UnitOfWorks
 {
     public interface IUnitOfWork
     {

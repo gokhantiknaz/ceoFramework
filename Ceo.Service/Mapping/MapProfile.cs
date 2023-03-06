@@ -1,8 +1,8 @@
-﻿using AltYapi.Core.Dtos;
-using AltYapi.Core.Models;
+﻿using Ceo.Core.Dtos;
+using Ceo.Core.Models;
 using AutoMapper;
 
-namespace AltYapi.Service.Mapping
+namespace Ceo.Service.Mapping
 {
     public class MapProfile : Profile
     {

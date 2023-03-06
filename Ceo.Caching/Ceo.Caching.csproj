@@ -4,11 +4,13 @@
     <TargetFramework>net7.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>disable</Nullable>
-    <RootNamespace>AltYapi.Caching</RootNamespace>
+    <RootNamespace>Ceo.Caching</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\AltYapi.Service\AltYapi.Service.csproj" />
+    <ProjectReference Include="..\Ceo.Core\Ceo.Core.csproj" />
+    <ProjectReference Include="..\Ceo.Repository\Ceo.Repository.csproj" />
+    <ProjectReference Include="..\Ceo.Service\Ceo.Service.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,7 +1,7 @@
 ﻿
 using System.ComponentModel.DataAnnotations;
 
-namespace AltYapi.Core.Models
+namespace Ceo.Core.Models
 {
     //Abstract yaptık.New ile kullanamayız.
     public abstract class BaseEntity

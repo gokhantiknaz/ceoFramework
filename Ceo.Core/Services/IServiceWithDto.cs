@@ -1,5 +1,5 @@
-﻿using AltYapi.Core.Dtos;
-using AltYapi.Core.Models;
+﻿using Ceo.Core.Dtos;
+using Ceo.Core.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +7,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AltYapi.Core.Services
+namespace Ceo.Core.Services
 {
 
     public interface IServiceWithDto<T, Dto>  where Dto : class

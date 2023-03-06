@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AltYapi.Repository.Fake
+namespace Ceo.Repository.Fake
 {
     public static class FakeData
     {

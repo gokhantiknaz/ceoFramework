@@ -1,10 +1,10 @@
-﻿using AltYapi.Core.Dtos;
-using AltYapi.Core.Models;
-using AltYapi.Core.Services;
+﻿using Ceo.Core.Dtos;
+using Ceo.Core.Models;
+using Ceo.Core.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 
-namespace AltYapi.API.Filters
+namespace Ceo.API.Filters
 {
     public class NotFoundFilter<T> : IAsyncActionFilter where T : BaseEntity
     {

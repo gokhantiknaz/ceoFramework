@@ -1,13 +1,13 @@
 ﻿
-using AltYapi.API.Filters;
-using AltYapi.Core.Dtos;
-using AltYapi.Core.Models;
-using AltYapi.Core.Services;
+using Ceo.API.Filters;
+using Ceo.Core.Dtos;
+using Ceo.Core.Models;
+using Ceo.Core.Services;
 using AutoMapper;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 
-namespace AltYapi.API.Controllers
+namespace Ceo.API.Controllers
 {
     [ServiceFilter(typeof(NotFoundFilter<Product>))]
     public class ProductsController : CustomBaseController

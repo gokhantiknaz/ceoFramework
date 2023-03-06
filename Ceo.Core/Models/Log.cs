@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AltYapi.Core.Models
+namespace Ceo.Core.Models
 {
     public class Log
     {

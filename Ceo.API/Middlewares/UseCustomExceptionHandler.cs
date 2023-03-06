@@ -1,11 +1,11 @@
-﻿using AltYapi.API.Controllers;
-using AltYapi.Core.Dtos;
-using AltYapi.Service.Exceptions;
+﻿using Ceo.API.Controllers;
+using Ceo.Core.Dtos;
+using Ceo.Service.Exceptions;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.EntityFrameworkCore;
 using System.Text.Json;
 
-namespace AltYapi.API.Middlewares
+namespace Ceo.API.Middlewares
 {
     public static class UseCustomExceptionHandler
     {

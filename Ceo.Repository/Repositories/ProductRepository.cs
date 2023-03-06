@@ -1,8 +1,8 @@
-﻿using AltYapi.Core.Models;
-using AltYapi.Core.Repositories;
+﻿using Ceo.Core.Models;
+using Ceo.Core.Repositories;
 using Microsoft.EntityFrameworkCore;
 
-namespace AltYapi.Repository.Repositories
+namespace Ceo.Repository.Repositories
 {
     public class ProductRepository : GenericRepository<Product>, IProductRepository
     {

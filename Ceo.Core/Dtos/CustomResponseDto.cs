@@ -5,7 +5,7 @@ using System.Text;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
-namespace AltYapi.Core.Dtos
+namespace Ceo.Core.Dtos
 {
     public class CustomResponseDto<T>
     {

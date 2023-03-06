@@ -1,6 +1,6 @@
 ﻿using System.Linq.Expressions;
 
-namespace AltYapi.Core.Services
+namespace Ceo.Core.Services
 {
     public interface IService<T> where T : class
     {

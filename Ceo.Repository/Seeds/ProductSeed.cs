@@ -1,8 +1,8 @@
-﻿using AltYapi.Core.Models;
+﻿using Ceo.Core.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace AltYapi.Repository.Seeds
+namespace Ceo.Repository.Seeds
 {
     internal class ProductSeed : IEntityTypeConfiguration<Product>
     {

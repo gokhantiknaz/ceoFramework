@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace AltYapi.Repository.Migrations
+namespace Ceo.Repository.Migrations
 {
     /// <inheritdoc />
     public partial class Person : Migration
