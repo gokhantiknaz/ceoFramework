@@ -1,18 +1,17 @@
-﻿using Ceo.Core.Dtos;
+﻿
+using Ceo.Service.Exceptions;
+
+using System.Linq.Expressions;
+using System.Text;
+using System.Threading.Tasks;
+using AutoMapper;
+using Ceo.Core.Dtos;
 using Ceo.Core.Models;
 using Ceo.Core.Repositories;
 using Ceo.Core.Services;
 using Ceo.Core.UnitOfWorks;
-using Ceo.Service.Exceptions;
-using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Memory;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Ceo.Caching
 {

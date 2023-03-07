@@ -33,10 +33,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Ceo.Caching\Ceo.Caching.csproj" />
-    <ProjectReference Include="..\Ceo.Core\Ceo.Core.csproj" />
-    <ProjectReference Include="..\Ceo.Repository\Ceo.Repository.csproj" />
-    <ProjectReference Include="..\Ceo.ServiceMongo\Ceo.ServiceMongo.csproj" />
-    <ProjectReference Include="..\Ceo.Service\Ceo.Service.csproj" />
   </ItemGroup>
 
 </Project>

@@ -52,12 +52,21 @@ builder.Services.AddAutoMapper(typeof(MapProfile));
 
 builder.Services.AddDbContext<AppDbContext>(x =>
 {
-    x.UseSqlServer(builder.Configuration.GetConnectionString("SqlConnection"), options =>
+    
+    x.UseNpgsql(builder.Configuration.GetConnectionString("PostgreConnection"), options =>
     {
         options.MigrationsAssembly(Assembly.GetAssembly(typeof(AppDbContext)).GetName().Name);
+
+        AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
+        AppContext.SetSwitch("Npgsql.DisableDateTimeInfinityConversions", true);
+
     });
+    // x.UseSqlServer(builder.Configuration.GetConnectionString("SqlConnection"), options =>
+    // {
+    //     options.MigrationsAssembly(Assembly.GetAssembly(typeof(AppDbContext)).GetName().Name);
+    // });
 
-
+    
 });
 
 

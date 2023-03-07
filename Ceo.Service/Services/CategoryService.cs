@@ -16,7 +16,6 @@ namespace Ceo.Service.Services
         {
             _mapper = mapper;
             _categoryRepository = categoryRepository;
-
         }
 
         public async Task<CustomResponseDto<CategoryWithProductsDto>> GetSingleCategoryByIdWithProductsAsync(int categoryId)

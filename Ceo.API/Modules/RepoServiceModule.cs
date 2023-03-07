@@ -23,6 +23,7 @@ namespace Ceo.API.Modules
             builder.RegisterGeneric(typeof(ServiceWithDto<,>)).As(typeof(IServiceWithDto<,>)).InstancePerLifetimeScope();
 
 
+
             builder.RegisterType<UnitOfWork>().As<IUnitOfWork>();
 
             var apiAssembly = Assembly.GetExecutingAssembly();

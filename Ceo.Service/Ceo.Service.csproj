@@ -13,7 +13,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Ceo.Core\Ceo.Core.csproj" />
+
+    <ProjectReference Include="..\Ceo.Repository\Ceo.Repository.csproj" />
   </ItemGroup>
 
 </Project>

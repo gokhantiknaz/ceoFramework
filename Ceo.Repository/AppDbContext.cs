@@ -4,6 +4,7 @@ using Ceo.Repository.AutoHistory;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using System.Reflection;
+using System.Xml;
 
 namespace Ceo.Repository
 {
@@ -12,7 +13,7 @@ namespace Ceo.Repository
 
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
-           
+
         }
 
         public DbSet<Category> Categories { get; set; }
@@ -71,12 +72,11 @@ namespace Ceo.Repository
                     }
                 }
             }
-            
+
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-          
             //Seeds de ProductFeatureSeed yapmadık buradan da yapabilirz göstermek için Migrotion esnasında veritabanına datayı direk atıyor.
             //Best practice açısından burada yazmamız gerekir örnek için yapıldı.
             modelBuilder.Entity<ProductFeature>().HasData(
@@ -87,10 +87,8 @@ namespace Ceo.Repository
             //modelBuilder.ApplyConfiguration (new ProductConfiguration());
             //base.OnModelCreating(modelBuilder.EnableAutoHistory(null));
             base.OnModelCreating(modelBuilder);
+
         }
-
-      
-
 
     }
 }
